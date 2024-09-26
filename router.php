@@ -20,6 +20,7 @@ switch ($params[0]) {
     $controller=new controller();
     $controller->getTurnById($params[1]);
     break;
+
     /*case 'home': 
         showHome();
         break;
@@ -35,7 +36,6 @@ switch ($params[0]) {
     case 'prevencion':
         showPrevencion();
         break;
-    
     case 'index':
         showIndex();
         break;*/

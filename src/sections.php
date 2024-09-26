@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 function showHome(){
     include_once 'templates/header.php';
     echo "<div class='header-gradiente'></div>
@@ -48,4 +48,4 @@ function showPrevencion(){
 function showIndex(){
     require_once 'index.html';
 }
-?>
+?> -->

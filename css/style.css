@@ -1,0 +1,32 @@
+body {
+    background-color: #E0F7FA; 
+}
+
+.hero {
+    background-color: #B2EBF2; 
+    color: #006064;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.services, .testimonials, .contact {
+    padding: 50px 0;
+}
+
+blockquote {
+    background-color: #f0f8ff;
+    border-left: 5px solid #00acc1;
+    padding: 10px 20px;
+    font-style: italic;
+}
+
+footer {
+    background-color: #00838F;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}

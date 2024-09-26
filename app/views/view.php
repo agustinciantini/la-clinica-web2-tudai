@@ -1,8 +1,8 @@
 <?php
 
 class view{
-    public function showTurns($turns){
-        //Imprimir todos los turnos.
+    public function showTurns($turns){         //Imprimir todos los turnos.
+
         ?>
         <td>Id</td><td>Fecha</td><td>Hora</td><td>Consultorio</td>
         <br>
@@ -17,8 +17,8 @@ class view{
             <?php
         }
     }
-    public function showTurnById($turn){
-        //Imprimir el turno segun id.
+    public function showTurnById($turn){           //Imprimir el turno segun id.
+
         ?>
         <h3>Listar Item.</h3>
         <td>Id</td><td>Fecha</td><td>Hora</td><td>Consultorio</td><td>Medico</td><td>Id paciente</td>
@@ -32,8 +32,8 @@ class view{
             */ ?>
         <?php
     }
-    public function showCategories($categories){
-        //Imprimir categorias.
+    public function showCategories($categories){         //Imprimir categorias.
+
         ?>
         <td>Id</td><td>Nombre</td><td>Apellido</td><td>Edad</td><td>Enfermedad</td><td>Medico</td>
         <br>
@@ -48,5 +48,18 @@ class view{
             <li><?=$category->medico?></li>*/?>
             <?php
         }
+    }
+
+    public function showCreateTurns($create){         // Imprimir los turnos creados.
+
+        
+    }
+
+    public function showDeleteTurns($delete){       // Imprimir los turnos borrados.
+
+    }
+
+    public function showUpdateTurns($update){        // Imprimir los turnos actualizados.
+
     }
 }
