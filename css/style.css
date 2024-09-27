@@ -30,3 +30,58 @@ footer {
 footer p {
     margin: 0;
 }
+
+/* Estilos del fondo */
+body {
+    background-color: #E0F7FA; 
+}
+/* Formulario centrado y mejorado */
+.login-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del formulario */
+.login-form h3 {
+    color: #006064;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Input estilizados */
+.login-form .form-control {
+    border: 1px solid #00ACC1;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Botón personalizado */
+.btn-custom {
+    background-color: #00838F;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.btn-custom:hover {
+    background-color: #006064;
+}
+
+/* Estilos generales para encabezados */
+h1, h2, h3, h4, h5, h6 {
+    color: #006064;
+}
+
+/* Footer */
+footer {
+    background-color: #00838F;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
