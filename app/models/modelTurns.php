@@ -1,6 +1,6 @@
 <?php
 
-class model{
+class modelTurns{
     private $db;
 
     public function __construct(){

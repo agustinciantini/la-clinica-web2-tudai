@@ -1,13 +1,13 @@
 <?php
-require_once './app/models/model.php';
-require_once './app/views/view.php';
+require_once './app/models/modelTurns.php';
+require_once './app/views/viewTurns.php';
 class controller{
     private $view;
     private $model;
 
     public function __construct(){
-        $this->view = new View();
-        $this->model = new Model();
+        $this->view = new ViewTurns();
+        $this->model = new ModelTurns();
     }
     public function getTurns(){
         $turns = $this->model->getTurns();

@@ -1,0 +1,26 @@
+        <h2>Tabla categorias</h2>
+        <div id="turnos" class="container my-5">
+        <h2 class="text-center mb-4">Turnos Ocupados</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dni</th>
+                    <th>Edad</th>
+                    <th>Enfermedad</th>
+                </tr>
+            </thead>
+            <tbody>
+        <?php foreach ($categories as $category) : ?>
+                <tr>
+                    <td><?=$category->id?></td>
+                    <td><?=$category->nombre?></td>
+                    <td><?=$category->apellido?></td>
+                    <td><?=$category->dni?></td>
+                    <td><?=$category->edad?></td>
+                    <td><?=$category->enfermedad?></td>           
+            <?php endforeach; ?>
+        
+        
