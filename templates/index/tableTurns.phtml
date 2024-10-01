@@ -1,3 +1,5 @@
+        <?php require_once './templates/layout/header.phtml'; ?>
+
         <div id="turnos" class="container my-5">
         <h2 class="text-center mb-4">Turnos Ocupados</h2>
         <table class="table table-striped">
@@ -18,6 +20,10 @@
                     <td><a href="detalle/<?=$turn->id?>">Ver más</a></td>
                 </tr>            
             <?php endforeach; ?>
+            </tbody>
+        </table>
+        </div>
+<?php    require_once './templates/layout/footer.phtml'; 
         
                 
             

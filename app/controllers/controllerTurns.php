@@ -9,6 +9,9 @@ class controller{
         $this->view = new ViewTurns();
         $this->model = new ModelTurns();
     }
+    public function showHome(){
+        $this->view->showHome();
+    }
     public function getTurns(){
         $turns = $this->model->getTurns();
         $this->view->showTurns($turns);

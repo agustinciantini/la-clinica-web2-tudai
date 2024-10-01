@@ -17,7 +17,7 @@ class AuthController {
     }
 
     public function login() {
-        if (!isset($_POST['email']) || empty($_POST['email'])) {
+        if (!isset($_POST['usuario']) || empty($_POST['usuario'])) {
             return $this->view->showLogin('Falta completar el nombre de usuario.');
         }
     
@@ -25,7 +25,7 @@ class AuthController {
             return $this->view->showLogin('Falta completar la contraseña.');
         }
     
-        $email = $_POST['email'];
+        $email = $_POST['usuario'];
         $password = $_POST['password'];
     
         // Verificar que el usuario está en la base de datos
