@@ -1,0 +1,8 @@
+<?php require_once './templates/layout/header.phtml';
+?>
+<h2 class="danger">Listar Item.</h2>
+    <p>Id</p><p>Fecha</p><p>Hora</p><p>Consultorio</p><p>Medico</p><p>Id paciente</p>
+    <p><?=$turn->id.$turn->fecha.$turn->hora.$turn->consultorio.$turn->medico.$turn->id_paciente?></p>
+    
+    <?php require_once './templates/layout/footer.phtml';
+?>

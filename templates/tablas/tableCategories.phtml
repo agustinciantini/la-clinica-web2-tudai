@@ -1,9 +1,9 @@
-        <h2>Tabla categorias</h2>
+        <!--Imprime la tabla de categorias, nuestros pacientes.-->
         <div id="turnos" class="container my-5">
-        <h2 class="text-center mb-4">Turnos Ocupados</h2>
+        <h2 class="text-center mb-4">Nuestros pacientes con turnos</h2>
         <table class="table table-striped">
             <thead>
-            <tr>
+                <tr>
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -20,7 +20,13 @@
                     <td><?=$category->apellido?></td>
                     <td><?=$category->dni?></td>
                     <td><?=$category->edad?></td>
-                    <td><?=$category->enfermedad?></td>           
+                    <td><?=$category->enfermedad?></td>    
+                </tr>
             <?php endforeach; ?>
+        </tbody>
+        </table>
+        </div>
+        <?php    require_once './templates/layout/footer.phtml'; 
+
         
         

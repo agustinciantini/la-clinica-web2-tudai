@@ -4,6 +4,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 require_once "./app/controllers/controllerTurns.php";
 require_once './app/controllers/auth.controller.php';
 require_once './libs/response.php';
+require_once './app/middlewares/session.auth.middleware.php';
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -16,6 +17,7 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'home';
+    sessionAuthMiddleware($res); 
     $controller=new controller();
     $controller-> showHome();
     break;
@@ -41,8 +43,9 @@ switch ($params[0]) {
     $controller->showLogin();
     break;
 
-    case 'sacarTurno':
-        showSacarTurno();
+    case 'solicitarturno':
+        $controller= new controller();
+        $controller->getTurnsPanel();
         break;
         /*
     case 'tarifas':

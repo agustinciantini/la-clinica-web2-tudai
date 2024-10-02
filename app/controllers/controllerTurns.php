@@ -16,6 +16,10 @@ class controller{
         $turns = $this->model->getTurns();
         $this->view->showTurns($turns);
     }
+    public function getTurnsPanel(){
+        $turns = $this->model->getTurns();
+        $this->view->showTurnsPanel($turns);
+    }
     public function getTurnById($id){
         $turn = $this->model->getTurnById($id);
         $this->view->showTurnById($turn);
