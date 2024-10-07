@@ -7,9 +7,6 @@ class viewTurns{
     public function showTurns($turns){     //imprime la tabla de turnos (items)
         require_once './templates/tablas/tableTurns.phtml';
     }
-    public function showTurnsPanel($turns){
-        require_once './templates/panel.phtml';
-    }
     public function showTurnById($turn){      //imprime un turno segun id.
         require_once './templates/tablas/turnById.phtml'; 
     }

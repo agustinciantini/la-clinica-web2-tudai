@@ -42,11 +42,6 @@ switch ($params[0]) {
     $controller = new AuthController();
     $controller->showLogin();
     break;
-
-    case 'solicitarturno':
-        $controller= new controller();
-        $controller->getTurnsPanel();
-        break;
         /*
     case 'tarifas':
         showTarifas();
