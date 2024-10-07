@@ -4,6 +4,9 @@ class viewTurns{
     public function showHome(){     //imprime HOME (index)
         require_once './templates/index/presentation.phtml'; 
     }
+    public function showFAQ(){    // impre las preguntas y respuestas.
+        require_once './templates/faq.phtml'; 
+    }
     public function showTurns($turns){     //imprime la tabla de turnos (items)
         require_once './templates/tablas/tableTurns.phtml';
     }
@@ -15,15 +18,14 @@ class viewTurns{
     }
 
     public function showCreateTurns($create){     // Imprimir los turnos creados.
-
-        
+        require_once './templates/functions/createTurns.phtml';   
     }
 
     public function showDeleteTurns($delete){     // Imprimir los turnos borrados.
-
+        require_once './templates/functions/deleteTurns.phtml';  
     }
 
     public function showUpdateTurns($update){     // Imprimir los turnos actualizados.
-
+        require_once './templates/functions/updateTurns.phtml';  
     }
 }

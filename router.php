@@ -21,6 +21,11 @@ switch ($params[0]) {
     $controller=new controller();
     $controller-> showHome();
     break;
+    
+    case 'faq':
+    $controller=new controller();
+    $controller-> showFAQ();
+    break;
 
     case 'turnos';
     $controller=new controller();
@@ -42,18 +47,5 @@ switch ($params[0]) {
     $controller = new AuthController();
     $controller->showLogin();
     break;
-        /*
-    case 'tarifas':
-        showTarifas();
-        break;
-    case 'preguntasFrecuentes':
-        showFAQ();
-        break;
-    case 'prevencion':
-        showPrevencion();
-        break;
-    case 'index':
-        showIndex();
-        break;*/
-    }
+}
 ?>

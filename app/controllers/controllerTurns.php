@@ -12,6 +12,10 @@ class controller{
     public function showHome(){
         $this->view->showHome();
     }
+
+    public function showFAQ(){
+        $this->view->showFAQ();
+    }
     public function getTurns(){
         $turns = $this->model->getTurns();
         $this->view->showTurns($turns);
