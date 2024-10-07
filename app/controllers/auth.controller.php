@@ -17,7 +17,8 @@ class AuthController {
     }
 
     public function login() {
-        if (!isset($_POST['usuario']) || empty($_POST['usuario'])) {
+        //Llegan por POST los datos del formulario.
+        if (!isset($_POST['user']) || empty($_POST['user'])) {
             return $this->view->showLogin('Falta completar el nombre de usuario.');
         }
     
@@ -25,14 +26,12 @@ class AuthController {
             return $this->view->showLogin('Falta completar la contraseña.');
         }
     
-        $email = $_POST['usuario'];
+        $email = $_POST['user'];
         $password = $_POST['password'];
     
         // Verificar que el usuario está en la base de datos
         $userFromDB = $this->model->getUser($email);
 
-        // password: 123456
-        // $userFromDB->password: $2y$10$xQop0wF1YJ/dKhZcWDqHceUM96S04u73zGeJtU80a1GmM.H5H0EHC
         if($userFromDB && password_verify($password, $userFromDB->password)){
             // Guardo en la sesión el ID del usuario
             session_start();
