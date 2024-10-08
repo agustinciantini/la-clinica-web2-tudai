@@ -50,7 +50,7 @@ switch ($params[0]) {
 
     case 'createTurns':
     $controller = new controller();
-    $controller->createTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+    $controller->createTurns(); //borrramos los parametro (($id, $fecha, $hora, $consultorio, $medico, $id_paciente)
     break;
 
     case 'deleteTurns':

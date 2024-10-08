@@ -28,8 +28,8 @@
             </tbody>
         </table>
         </div>
-        <!-- SI ES ADMINISTRADOR VE ESTOS BOTONES y sus FUNCIONES -->
 
+        <!-- SI ES ADMINISTRADOR VE ESTOS BOTONES y sus FUNCIONES -->
 
  <!--Modal para agregar Turno -->
   <div class="modal fade" id="addTurnoModal" tabindex="-1" aria-labelledby="addTurnoModalLabel" aria-hidden="true">
@@ -40,28 +40,37 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="createTurns" method="POST">
             <div class="mb-3">
               <label for="pacienteNombre" class="form-label">Nombre del Paciente</label>
-              <input type="text" class="form-control" id="pacienteNombre" required>
+              <input type="text" name="nombre" class="form-control" id="nombreTurno" required>
+
             </div>
             <div class="mb-3">
               <label for="fechaTurno" class="form-label">Fecha</label>
-              <input type="date" class="form-control" id="fechaTurno" required>
+              <input type="date" name="fecha" class="form-control" id="fechaTurno" required>
             </div>
             <div class="mb-3">
               <label for="especialidadTurno" class="form-label">Hora</label>
-              <input type="time" class="form-control" id="horaTurno" required>
+              <input type="time" name="hora" class="form-control" id="horaTurno" required>
+            </div>
+            <div class="mb-3">
+              <label for="medicoTurno" class="form-label">Consultorio</label>
+              <input type="text" name="consultorio" class="form-control" id="consultorioTurno" required>
             </div>
             <div class="mb-3">
               <label for="medicoTurno" class="form-label">Médico</label>
-              <input type="text" class="form-control" id="medicoTurno" required>
+              <input type="text" name="medico" class="form-control" id="medicoTurno" required>
             </div>
+            <div class="mb-3">
+              <label for="medicoTurno" class="form-label">Número de Paciente</label>
+              <input type="number" name="id_paciente" class="form-control" id="id_paciente" required>
+            </div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" method="POST" class="btn btn-primary">Agregar Turno</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Agregar Turno</button>
         </div>
       </div>
     </div>
@@ -76,8 +85,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="mb-3">
+        <form action="updateTurns" method="POST">            
+          <div class="mb-3">
               <label for="editPacienteNombre" class="form-label">Nombre del Paciente</label>
               <input type="text" class="form-control" id="editPacienteNombre" required>
             </div>
@@ -90,14 +99,18 @@
               <input type="time" class="form-control" id="editEspecialidadTurno" required>
             </div>
             <div class="mb-3">
+              <label for="medicoTurno" class="form-label">Consultorio</label>
+              <input type="text" name="consultorio" class="form-control" id="consultorioTurno" required>
+            </div>
+            <div class="mb-3">
               <label for="editMedicoTurno" class="form-label">Médico</label>
               <input type="text" class="form-control" id="editMedicoTurno" required>
             </div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" method="POST" class="btn btn-primary">Guardar Cambios</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Guardar Cambios</button>
         </div>
       </div>
     </div>
@@ -156,11 +169,11 @@
               <label for="pacienteEmail" class="form-label">Correo Electrónico</label>
               <input type="email" class="form-control" id="pacienteEmail" required>
             </div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Agregar Paciente</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Agregar Paciente</button>
         </div>
       </div>
     </div>
@@ -200,11 +213,11 @@
               <label for="editPacienteEmail" class="form-label">Correo Electrónico</label>
               <input type="email" class="form-control" id="editPacienteEmail" required>
             </div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Guardar Cambios</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Guardar Cambios</button>
         </div>
       </div>
     </div>

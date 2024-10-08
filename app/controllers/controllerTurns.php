@@ -28,27 +28,28 @@ class controller{
         $categories = $this->model->getCategories();
         $this->view->showCategories($categories);
     }
-    public function createTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
-        if (!isset($_POST['turn']) || empty($_POST['turn'])) {
-            return $this->view->showHome();
+    public function createTurns(){
+        if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
+            return $this->view->showHome(); // crear msj de error
         }
-        if (!isset($_POST['¿QUÉ PONGO ACÁ?']) || empty($_POST['¿QUÉ PONGO ACÁ?'])) {
+        if (!isset($_POST['hora']) || empty($_POST['hora'])) {
             return $this->view->showHome();
         }
 
-        $id = $_POST['id'];
+        //$id = $_POST['id'];
         $fecha = $_POST['fecha'];
         $hora = $_POST['hora'];
         $consultorio = $_POST['consultorio'];
         $medico = $_POST['medico'];
-        $id_paciente = $_POST['id_paciente'];
+        $id_paciente = intval($_POST['id_paciente']);
+        
 
-        $id = $this->model->createTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
-        $this->view->showTurnById($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+        $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
+        $this->view->showTurnById($turn);
     }
 
     public function deleteTurns($id) {
-        $turn = $this->model->getTurns($id);
+        $turn = $this->model->getTurnById($id);
 
         if (!$turn) {
             return $this->view->showHome();
