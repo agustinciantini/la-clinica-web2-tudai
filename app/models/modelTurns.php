@@ -28,11 +28,11 @@ class modelTurns{
         $query=$this->db->prepare("INSERT INTO turno ('id', 'fecha', 'hora', 'consultorio', 'medico', 'id_paciente') VALUES ('?','?','?','?','?','?");
         $query->execute([$id, $fecha, $hora, $consultorio, $medico, $id_paciente]);
     }
-    public function deleteTurns($id){
+    public function eraseTurns($id){
         $query=$this->db->prepare('DELETE FROM turno WHERE turno . id = ?');
         $query->execute([$id]);
     }
-    public function updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
+    public function finishTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
         $query=$this->db->prepare("UPDATE turno SET id ='?','fecha'='?','hora'='?','consultorio'='?','medico'='?','id_paciente'='?' WHERE 1");
         $query->execute([$id, $fecha, $hora, $consultorio, $medico, $id_paciente]);
     }

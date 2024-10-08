@@ -4,7 +4,7 @@ class viewTurns{
     public function showHome(){     //imprime HOME (index)
         require_once './templates/index/presentation.phtml'; 
     }
-    public function showFAQ(){    // impre las preguntas y respuestas.
+    public function showFAQ(){    // imprime las preguntas y respuestas.
         require_once './templates/faq.phtml'; 
     }
     public function showTurns($turns){     //imprime la tabla de turnos (items)
@@ -13,19 +13,20 @@ class viewTurns{
     public function showTurnById($turn){      //imprime un turno segun id.
         require_once './templates/tablas/turnById.phtml'; 
     }
-    public function showCategories($categories){     //Imprimir pacientes (categorias)
+    public function showCategories($categories){     //imprimir pacientes (categorias)
         require_once './templates/tablas/tableCategories.phtml';
     }
 
-    public function showCreateTurns($create){     // Imprimir los turnos creados.
-        require_once './templates/functions/createTurns.phtml';   
-    }
+//     public function showCreateTurns($create){     // imprimir los turnos creados.
+//         require_once '';   
+//     }
 
-    public function showDeleteTurns($delete){     // Imprimir los turnos borrados.
-        require_once './templates/functions/deleteTurns.phtml';  
-    }
+//     public function showDeleteTurns($delete){     // imprimir los turnos borrados.
+//         require_once '';  
+//     }
 
-    public function showUpdateTurns($update){     // Imprimir los turnos actualizados.
-        require_once './templates/functions/updateTurns.phtml';  
-    }
+//     public function showUpdateTurns($update){     // imprimir los turnos actualizados.
+//         require_once '';  
+//     }
+// 
 }

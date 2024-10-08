@@ -47,5 +47,20 @@ switch ($params[0]) {
     $controller = new AuthController();
     $controller->showLogin();
     break;
+
+    case 'createTurns':
+    $controller = new controller();
+    $controller->createTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+    break;
+
+    case 'deleteTurns':
+    $controller = new controller();
+    $controller->deleteTurns($params[1]);
+    break;
+
+    case 'updateTurns':
+    $controller = new controller();
+    $controller->updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+    break;
 }
 ?>
