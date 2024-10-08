@@ -4,6 +4,9 @@ class viewTurns{
     public function showHome(){     //imprime HOME (index)
         require_once './templates/index/presentation.phtml'; 
     }
+    public function showFaq(){     //imprime preguntas frecuentes
+        require_once './templates/faq.phtml'; 
+    }
     public function showTurns($turns){     //imprime la tabla de turnos (items)
         require_once './templates/tablas/tableTurns.phtml';
     }

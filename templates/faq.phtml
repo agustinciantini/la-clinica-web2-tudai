@@ -1,0 +1,65 @@
+<?php require_once './templates/layout/header.phtml'; ?>
+    <section class="container my-5">
+        <h2 class="text-center">Preguntas Frecuentes</h2>
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                1. ¿Cuáles son los horarios de atención?
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Nuestro horario de atención es de lunes a viernes de 8:00 AM a 5:00 PM y los sábados de 9:00 AM a 1:00 PM.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+               2. ¿Cómo puedo agendar una cita?
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Puede agendar una cita a través de nuestro formulario en línea, llamando a nuestro número de atención o visitándonos en la clínica.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+               3. ¿Solo puedo sacar turnos por la Web?
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Si lo desea, puede llamarnos a nuestro número (que se encuentra al final de la web) y hacerlo de manera directa con nuestro consultorio. Recomendamos hacerlo desde la web ya que, la forma de hacerlo es sencilla y dinámica debido a que no siempre se corresponde con rapidez.              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+               4. ¿Cómo puedo cancelar un turno?
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Debe ser un usuario logueado para poder "Eliminar" su turno, de esta forma sabremos que su turno se encuentra cancelado.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+               5. ¿Cómo debo abonar la consulta?
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Por el momento el abono de las consultas debe darse el día que asista a su turno, por eso, pedimos encarecidamente el compromiso de asistir y cancelar su turno si no puede asistir con anticipación.              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+<?php require_once './templates/layout/footer.phtml';

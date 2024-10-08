@@ -42,6 +42,11 @@ switch ($params[0]) {
     $controller = new AuthController();
     $controller->showLogin();
     break;
+
+    case 'faq';
+    $controller=new controller();
+    $controller->showFaq();
+    break;
         /*
     case 'tarifas':
         showTarifas();
