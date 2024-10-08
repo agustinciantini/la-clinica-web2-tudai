@@ -16,18 +16,12 @@ class controller{
         $this->view->showFaq();
     }
     public function getTurns(){  //Muestra turnos.
-
-
         $turns = $this->model->getTurns();
         $this->view->showTurns($turns);
     }
     public function getTurnById($id){ //Muestra un turno especifico (id).
         $turn = $this->model->getTurnById($id);
         $this->view->showTurnById($turn);
-    }
-    public function getCategories(){  //Muestra categorias.
-        $categories = $this->model->getCategories();
-        $this->view->showCategories($categories);
     }
     public function createTurns(){
         if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
@@ -43,28 +37,38 @@ class controller{
         $consultorio = $_POST['consultorio'];
         $medico = $_POST['medico'];
         $id_paciente = intval($_POST['id_paciente']);
-        
+        var_dump($fecha, $hora, $consultorio, $medico, $id_paciente);
 
         $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
         $this->view->showTurnById($turn);
     }
     public function deleteTurns($id) {
         $turn = $this->model->getTurnById($id);
-
+        
         if (!$turn) {
             return $this->view->showHome();
         }
-        $this->model->eraseTurns($id);   //consultar acá
+        $this->model->deleteTurns($id);
+        header('Location:'. BASE_URL . 'home');
     }
 
-    public function updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
-        $turn = $this->model->getTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+    public function updateTurns($id){
+        $turn = $this->model->getTurnById($id);
+
+        $fecha = $_POST['fecha'];
+        $hora = $_POST['hora'];
+        $consultorio = $_POST['consultorio'];
+        $medico = $_POST['medico'];
+        $id_paciente = intval($_POST['id_paciente']);
 
         if (!$turn) {
             return $this->view->showHome();
         }
+        $this->model->updateTurns($id,$fecha, $hora, $consultorio, $medico, $id_paciente );
+        header('Location:'. BASE_URL . 'home');
 
-        // actualiza la tarea
-        $this->model->finishTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+        if (!$turn) {
+            return $this->view->showHome();
+        }
     }
 }

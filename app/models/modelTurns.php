@@ -18,12 +18,6 @@ class modelTurns{
         $turn=$query->fetch(PDO::FETCH_OBJ);
         return $turn;
     }
-    public function getCategories(){
-        $query=$this->db->prepare('SELECT * FROM paciente');
-        $query->execute();
-        $categories=$query->fetchAll(PDO::FETCH_OBJ);
-        return $categories;
-    }
     public function createTurns($fecha, $hora, $consultorio, $medico, $id_paciente){ 
         $query= $this->db->prepare("INSERT INTO turno (fecha, hora, consultorio, medico, id_paciente) VALUES (?,?,?,?,?)");
         $result = $query->execute([$fecha, $hora, $consultorio, $medico, $id_paciente]);
@@ -32,11 +26,11 @@ class modelTurns{
     
         return $nuevaQuery->fetch(PDO::FETCH_OBJ);
     }
-    public function eraseTurns($id){
+    public function deleteTurns($id){
         $query=$this->db->prepare('DELETE FROM turno WHERE turno . id = ?');
         $query->execute([$id]);
     }
-    public function finishTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
+    public function updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
         $query=$this->db->prepare("UPDATE turno SET fecha=?,hora=?,consultorio=?,medico=?,id_paciente=? WHERE turno .id = ?");
         $query->execute([ $fecha, $hora, $consultorio, $medico, $id_paciente,$id]);
     }

@@ -2,6 +2,7 @@
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 require_once "./app/controllers/controllerTurns.php";
+require_once "./app/controllers/controllerPatient.php";
 require_once './app/controllers/auth.controller.php';
 require_once './libs/response.php';
 require_once './app/middlewares/session.auth.middleware.php';
@@ -29,8 +30,9 @@ switch ($params[0]) {
 
     case 'turnos';
     $controller=new controller();
+    $controllerPatient=new controllerPatient();
     $controller->getTurns();
-    $controller->getCategories();
+    $controllerPatient->getCategories();
     break;
 
     case 'detalle';
@@ -47,19 +49,6 @@ switch ($params[0]) {
     $controller = new AuthController();
     $controller->showLogin();
     break;
-        /*
-    case 'tarifas':
-        showTarifas();
-        break;
-    case 'preguntasFrecuentes':
-        showFAQ();
-        break;
-    case 'prevencion':
-        showPrevencion();
-        break;
-    case 'index':
-        showIndex();
-        break;*/
     
     case 'createTurns':
     $controller = new controller();
@@ -73,6 +62,6 @@ switch ($params[0]) {
 
     case 'updateTurns':
     $controller = new controller();
-    $controller->updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+    $controller->updateTurns($params[1]);
     break;
 }

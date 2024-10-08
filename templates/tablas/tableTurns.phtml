@@ -19,16 +19,17 @@
                     <td><?=$turn->id?></td>
                     <td><?=$turn->hora?></td>
                     <td><?=$turn->fecha?></td>
-                    <td><a href="detalle/<?=$turn->id?>">Ver más</a></td>
-                    <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</button></td>
-                    <td><button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</button></td>
-                    <td><button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTurnoModal" data-id="001">Eliminar</button></td>
+                    <td><a class="btn text-black" href="detalle/<?=$turn->id?>">Ver más</a></td>
+                    <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
+                    <td><a href="<?= BASE_URL?>deleteTurns/<?=$turn->id ?>" class="btn text-white btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTurnoModal" data-id="001">Eliminar</a></td>
                 </tr>            
             <?php endforeach; ?>
             </tbody>
         </table>
         </div>
-
+        <div class="text-center">
+        <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
+        </div>
         <!-- SI ES ADMINISTRADOR VE ESTOS BOTONES y sus FUNCIONES -->
 
  <!--Modal para agregar Turno -->
@@ -111,25 +112,6 @@
           </form>
         </div>
         <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal para eliminar Turno -->
-  <div class="modal fade" id="deleteTurnoModal" tabindex="-1" aria-labelledby="deleteTurnoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteTurnoModalLabel">Eliminar Turno</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ¿Estás seguro de que deseas eliminar este turno?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button>
         </div>
       </div>
     </div>
@@ -222,23 +204,3 @@
       </div>
     </div>
   </div>
-
-   <!--Modal para eliminar Paciente -->
-  <div class="modal fade" id="deletePacienteModal" tabindex="-1" aria-labelledby="deletePacienteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deletePacienteModalLabel">Eliminar Paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ¿Estás seguro de que deseas eliminar este paciente?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
