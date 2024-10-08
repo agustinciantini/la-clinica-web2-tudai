@@ -16,6 +16,8 @@ class controller{
         $this->view->showFaq();
     }
     public function getTurns(){  //Muestra turnos.
+
+
         $turns = $this->model->getTurns();
         $this->view->showTurns($turns);
     }
@@ -27,15 +29,42 @@ class controller{
         $categories = $this->model->getCategories();
         $this->view->showCategories($categories);
     }
-    public function createTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
-        $create = $this->model->createTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
-        $this->view->showTurnById($id);
+    public function createTurns(){
+        if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
+            return $this->view->showHome(); // crear msj de error
+        }
+        if (!isset($_POST['hora']) || empty($_POST['hora'])) {
+            return $this->view->showHome();
+        }
+
+        //$id = $_POST['id'];
+        $fecha = $_POST['fecha'];
+        $hora = $_POST['hora'];
+        $consultorio = $_POST['consultorio'];
+        $medico = $_POST['medico'];
+        $id_paciente = intval($_POST['id_paciente']);
+        
+
+        $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
+        $this->view->showTurnById($turn);
     }
-    public function deleteTurns($id){
-        $delete = $this->model->deleteTurns($id);
+    public function deleteTurns($id) {
+        $turn = $this->model->getTurnById($id);
+
+        if (!$turn) {
+            return $this->view->showHome();
+        }
+        $this->model->eraseTurns($id);   //consultar acá
     }
+
     public function updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
-        $update = $this->model->updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
-        $this->view->showTurnById($id);
+        $turn = $this->model->getTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
+
+        if (!$turn) {
+            return $this->view->showHome();
+        }
+
+        // actualiza la tarea
+        $this->model->finishTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente);
     }
 }

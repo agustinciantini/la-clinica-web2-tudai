@@ -1,7 +1,37 @@
-<?php require_once './templates/layout/header.phtml';
+<?php require_once './templates/layout/header.phtml'; ?>
+
+<div class="container mt-4">
+    <h2 class="text-primary">Detalles del Turno</h2>
+
+    <table class="table table-striped table-hover mt-3" style="border: 1px solid #bcd4e6;">
+        <tbody>
+            <tr>
+                <th scope="row" class="bg-light text-secondary">Id</th>
+                <td><?= $turn->id ?></td>
+            </tr>
+            <tr>
+                <th scope="row" class="bg-light text-secondary">Fecha</th>
+                <td><?= $turn->fecha; ?></td>
+            </tr>
+            <tr>
+                <th scope="row" class="bg-light text-secondary">Hora</th>
+                <td><?= $turn->hora ?></td>
+            </tr>
+            <tr>
+                <th scope="row" class="bg-light text-secondary">Consultorio</th>
+                <td><?= $turn->consultorio ?></td>
+            </tr>
+            <tr>
+                <th scope="row" class="bg-light text-secondary">Médico</th>
+                <td><?= $turn->medico ?></td>
+            </tr>
+            <tr>
+                <th scope="row" class="bg-light text-secondary">ID Paciente</th>
+                <td><?= $turn->id_paciente ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<?php require_once './templates/layout/footer.phtml';
 ?>
-<h2 class="danger">Listar Item.</h2>
-    <p>Id</p><p>Fecha</p><p>Hora</p><p>Consultorio</p><p>Medico</p><p>Id paciente</p>
-    <p><?=$turn->id.$turn->fecha.$turn->hora.$turn->consultorio.$turn->medico.$turn->id_paciente?></p>
-    
-    <?php require_once './templates/layout/footer.phtml';
