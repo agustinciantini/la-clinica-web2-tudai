@@ -1,118 +1,117 @@
         <!--Imprime la tabla de turnos, nuestros items.-->
-    <?php require_once './templates/layout/header.phtml'; 
-?>
+        <?php require_once './templates/layout/header.phtml';
+        ?>
 
         <div id="turnos" class="container my-5">
-        <h2 class="text-center mb-4">Turnos Ocupados</h2>
-        <table class="table table-striped">
+          <h2 class="text-center mb-4">Turnos Ocupados</h2>
+          <table class="table table-striped">
             <thead>
+              <tr>
+                <th>ID Paciente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Detalles</th>
+                <th>
+
+                  <!--Boton "Agregar"-->
+                  <div class="text-center">
+                <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
+        </div>
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($turns as $turn) : ?>
             <tr>
-                    <th>Paciente Id</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Detalles</th>
-                </tr>
-            </thead>
-            <tbody>
-        <?php foreach ($turns as $turn) : ?>
-                <tr>
-                    <td><?=$turn->id?></td>
-                    <td><?=$turn->hora?></td>
-                    <td><?=$turn->fecha?></td>
-                    <td><a class="btn text-black" href="detalle/<?=$turn->id?>">Ver más</a></td>
- <!--Boton "Editar"--><td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
-<!--Boton "Eliminar"--><td><a href="<?= BASE_URL?>deleteTurns/<?=$turn->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
-</tr>            
-            <?php endforeach; ?>
-            </tbody>
+              <td><?= $turn->id ?></td>
+              <td><?= $turn->hora ?></td>
+              <td><?= $turn->fecha ?></td>
+              <td><a class="btn btn-link text-black" href="detalle/<?= $turn->id ?>">Ver más</a></td>
+              <!--Boton "Editar"-->
+              <td><a href="<?= BASE_URL ?>editTurns/<?= $turn->id ?>" class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal">Editar</a></td>
+              <!--Boton "Eliminar"-->
+              <td><a href="<?= BASE_URL ?>deleteTurns/<?= $turn->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
         </table>
         </div>
-        <!--Boton "Agregar"-->
-        <div class="text-center">
-        <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
-        </div>
+
         <!-- SI ES ADMINISTRADOR VE ESTOS BOTONES y sus FUNCIONES -->
- <!--Form para agregar Turno -->
-  <div class="modal fade" id="addTurnoModal" tabindex="-1" aria-labelledby="addTurnoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addTurnoModalLabel">Agregar Turno</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="createTurns" method="POST">
-            <div class="mb-3">
-              <label for="pacienteNombre" class="form-label">Nombre del Paciente</label>
-              <input type="text" name="nombre" class="form-control" id="nombreTurno" required>
 
+        <!--Form para agregar Turno -->
+        <div class="modal fade" id="addTurnoModal" tabindex="-1" aria-labelledby="addTurnoModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addTurnoModalLabel">Agregar Turno</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="createTurns" method="POST">
+                  <div class="mb-3">
+                    <label for="fechaTurno" class="form-label">Fecha</label>
+                    <input type="date" name="fecha" class="form-control" id="fechaTurno" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="especialidadTurno" class="form-label">Hora</label>
+                    <input type="time" name="hora" class="form-control" id="horaTurno" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="medicoTurno" class="form-label">Consultorio</label>
+                    <input type="text" name="consultorio" class="form-control" id="consultorioTurno" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="medicoTurno" class="form-label">Médico</label>
+                    <input type="text" name="medico" class="form-control" id="medicoTurno" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="medicoTurno" class="form-label">Número de Paciente</label>
+                    <input type="number" name="id_paciente" class="form-control" id="id_paciente" required>
+                  </div>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" method="POST" class="btn btn-primary">Agregar Turno</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="fechaTurno" class="form-label">Fecha</label>
-              <input type="date" name="fecha" class="form-control" id="fechaTurno" required>
-            </div>
-            <div class="mb-3">
-              <label for="especialidadTurno" class="form-label">Hora</label>
-              <input type="time" name="hora" class="form-control" id="horaTurno" required>
-            </div>
-            <div class="mb-3">
-              <label for="medicoTurno" class="form-label">Consultorio</label>
-              <input type="text" name="consultorio" class="form-control" id="consultorioTurno" required>
-            </div>
-            <div class="mb-3">
-              <label for="medicoTurno" class="form-label">Médico</label>
-              <input type="text" name="medico" class="form-control" id="medicoTurno" required>
-            </div>
-            <div class="mb-3">
-              <label for="medicoTurno" class="form-label">Número de Paciente</label>
-              <input type="number" name="id_paciente" class="form-control" id="id_paciente" required>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" method="POST" class="btn btn-primary">Agregar Turno</button>
-          </form>
+          </div>
         </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
 
-   <!--Form para editar Turno -->
-  <div class="modal fade" id="editTurnoModal" tabindex="-1" aria-labelledby="editTurnoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editTurnoModalLabel">Editar Turno</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!--Form para editar Turno -->
+        <div class="modal fade" id="editTurnoModal" tabindex="-1" aria-labelledby="editTurnoModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editTurnoModalLabel">Editar Turno</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <form action="<?= BASE_URL ?>updateTurns/<?= $turn->id ?>" method="POST">
+                  <div class="mb-3">
+                    <label for="editFechaTurno" class="form-label">Fecha</label>
+                    <input type="date" name="fecha" class="form-control" id="editFechaTurno" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="editEspecialidadTurno" class="form-label">Hora</label>
+                    <input type="time" name="hora" class="form-control" id="editEspecialidadTurno" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="medicoTurno" class="form-label">Consultorio</label>
+                    <input type="text" name="consultorio" class="form-control" id="consultorioTurno" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="editMedicoTurno" class="form-label">Médico</label>
+                    <input type="text" name="medico" class="form-control" id="editMedicoTurno" required>
+                  </div>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" method="POST" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-        <form action="updateTurns" method="POST">            
-          <div class="mb-3">
-              <label for="editPacienteNombre" class="form-label">Nombre del Paciente</label>
-              <input type="text" class="form-control" id="editPacienteNombre" required>
-            </div>
-            <div class="mb-3">
-              <label for="editFechaTurno" class="form-label">Fecha</label>
-              <input type="date" class="form-control" id="editFechaTurno" required>
-            </div>
-            <div class="mb-3">
-              <label for="editEspecialidadTurno" class="form-label">Hora</label>
-              <input type="time" class="form-control" id="editEspecialidadTurno" required>
-            </div>
-            <div class="mb-3">
-              <label for="medicoTurno" class="form-label">Consultorio</label>
-              <input type="text" name="consultorio" class="form-control" id="consultorioTurno" required>
-            </div>
-            <div class="mb-3">
-              <label for="editMedicoTurno" class="form-label">Médico</label>
-              <input type="text" class="form-control" id="editMedicoTurno" required>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" method="POST" class="btn btn-primary">Guardar Cambios</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>

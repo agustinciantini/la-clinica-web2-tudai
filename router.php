@@ -18,52 +18,52 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'home';
-    sessionAuthMiddleware($res); 
-    $controller=new controllerTurns();
-    $controller-> showHome();
-    break;
+        sessionAuthMiddleware($res);
+        $controller = new controllerTurns();
+        $controller->showHome();
+        break;
     
     case 'faq':
-    $controller=new controllerTurns();
-    $controller-> showFAQ();
-    break;
+        $controller = new controllerTurns();
+        $controller->showFAQ();
+        break;
 
     case 'turnos';
-    $controller=new controllerTurns();
-    $controllerCategory=new controllerCategory();
-    $controller->getTurns();
-    $controllerCategory->getCategories();
-    break;
+        $controller = new controllerTurns();
+        $controllerCategory = new controllerCategory();
+        $controller->getTurns();
+        $controllerCategory->getCategories();
+        break;
 
     case 'detalle';
-    $controller=new controllerTurns();
-    $controller->getTurnById($params[1]);
-    break;
+        $controller = new controllerTurns();
+        $controller->getTurnById($params[1]);
+        break;
 
     case 'login';
-    $controller = new AuthController();
-    $controller->login();
-    break;
+        $controller = new AuthController();
+        $controller->login();
+        break;
 
     case 'showLogin';
-    $controller = new AuthController();
-    $controller->showLogin();
-    break;
+        $controller = new AuthController();
+        $controller->showLogin();
+        break;
     
     case 'createTurns':
-    $controller = new controllerTurns();
-    $controller->createTurns(); //borrramos los parametro (($id, $fecha, $hora, $consultorio, $medico, $id_paciente)
-    break;
+        $controller = new controllerTurns();
+        $controller->createTurns();
+        break;
 
     case 'deleteTurns':
-    $controller = new controllerTurns();
-    $controller->deleteTurns($params[1]);
-    break;
+        $controller = new controllerTurns();
+        $controller->deleteTurns($params[1]);
+        break;
 
     case 'updateTurns':
-    $controller = new controllerTurns();
-    $controller->updateTurns($params[1]);
-    break;
+        $controller = new controllerTurns();
+        $controller->updateTurns($params[1]);
+        break;
 
     case 'deleteCategories':
         $controller = new controllerCategory();

@@ -55,7 +55,7 @@ class controllerCategory{
         $medicoPaciente = $_POST['medicoPaciente'];
 
       
-        $this->model->updateCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente);
-        header('Location:'. BASE_URL . 'home');
+        $this->model->updateCategories($id, $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente);
+        header('Location:'. BASE_URL . 'turnos');
     }
 }

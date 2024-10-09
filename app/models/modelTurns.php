@@ -16,6 +16,9 @@ class modelTurns{
         $query = $this->db -> prepare('SELECT * FROM turno WHERE id = ?');
         $query->execute([$id]);
         $turn=$query->fetch(PDO::FETCH_OBJ);
+        if (!$turn) {
+            return null;
+        }
         return $turn;
     }
     public function createTurns($fecha, $hora, $consultorio, $medico, $id_paciente){ 
@@ -30,8 +33,8 @@ class modelTurns{
         $query=$this->db->prepare('DELETE FROM turno WHERE turno . id = ?');
         $query->execute([$id]);
     }
-    public function updateTurns($id, $fecha, $hora, $consultorio, $medico, $id_paciente){
-        $query=$this->db->prepare("UPDATE turno SET fecha=?,hora=?,consultorio=?,medico=?,id_paciente=? WHERE turno .id = ?");
-        $query->execute([ $fecha, $hora, $consultorio, $medico, $id_paciente,$id]);
+    public function updateTurns($id, $fecha, $hora, $consultorio, $medico){
+        $query=$this->db->prepare("UPDATE turno SET fecha=?,hora=?,consultorio=?,medico=? WHERE turno.id = ?");
+        $query->execute([ $fecha, $hora, $consultorio, $medico,$id]);
     }
 }

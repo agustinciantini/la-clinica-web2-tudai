@@ -6,33 +6,30 @@
     <table class="table table-striped table-hover mt-3" style="border: 1px solid #bcd4e6;">
         <tbody>
             <tr>
-                <th scope="row" class="bg-light text-secondary">Id</th>
-                <td><?= $turn->id ?></td>
+                <th scope="row" class="bg-light text-secondary">ID</th>
+                <td><?= $turn->id?></td>
             </tr>
             <tr>
                 <th scope="row" class="bg-light text-secondary">Fecha</th>
-                <td><?= $turn->fecha; ?></td>
+                <td><?=$turn->fecha?></td>
             </tr>
             <tr>
                 <th scope="row" class="bg-light text-secondary">Hora</th>
-                <td><?= $turn->hora ?></td>
+                <td><?= $turn->hora?></td>
             </tr>
             <tr>
                 <th scope="row" class="bg-light text-secondary">Consultorio</th>
-                <td><?= $turn->consultorio ?></td>
+                <td><?= $turn->consultorio?></td>
             </tr>
             <tr>
                 <th scope="row" class="bg-light text-secondary">Médico</th>
-                <td><?= $turn->medico ?></td>
+                <td><?= $turn->medico?></td>
             </tr>
             <tr>
                 <th scope="row" class="bg-light text-secondary">ID Paciente</th>
-                <td><?= $turn->id_paciente ?></td>
+                <td><?= $turn->id_paciente?></td>
             </tr>
         </tbody>
     </table>
 </div>
-
-
 <?php require_once './templates/layout/footer.phtml';
-?>

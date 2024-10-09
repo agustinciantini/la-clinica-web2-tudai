@@ -20,8 +20,11 @@ class controllerTurns{
         $this->view->showTurns($turns);
     }
     public function getTurnById($id){ //Muestra un turno especifico (id).
-        $turn = $this->model->getTurnById($id);
-        $this->view->showTurnById($turn);
+        $turnos = $this->model->getTurnById($id);
+        if(!$turnos){
+            echo("no existe");
+        }
+        $this->view->showTurnById($turnos);
     }
     public function createTurns(){
         if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
@@ -31,16 +34,16 @@ class controllerTurns{
             return $this->view->showHome();
         }
 
-        //$id = $_POST['id'];
         $fecha = $_POST['fecha'];
         $hora = $_POST['hora'];
         $consultorio = $_POST['consultorio'];
         $medico = $_POST['medico'];
         $id_paciente = intval($_POST['id_paciente']);
-        var_dump($fecha, $hora, $consultorio, $medico, $id_paciente);
 
         $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
         $this->view->showTurnById($turn);
+        
+        header('Location:'. BASE_URL . 'turnos');
     }
     public function deleteTurns($id) {
         $turn = $this->model->getTurnById($id);
@@ -49,23 +52,30 @@ class controllerTurns{
             return $this->view->showHome();
         }
         $this->model->deleteTurns($id);
-        header('Location:'. BASE_URL . 'home');
+        header('Location:'. BASE_URL . 'turnos');
     }
 
     public function updateTurns($id){
         $turn = $this->model->getTurnById($id);
 
+        if (!$turn) {
+            echo("El turno no exixte"); 
+        }
+        if (!isset($_POST['fecha']) || empty($_POST['fecha']) || 
+        !isset($_POST['hora']) || empty($_POST['hora']) || 
+        !isset($_POST['consultorio']) || empty($_POST['consultorio']) || 
+        !isset($_POST['medico']) || empty($_POST['medico'])) {
+            // archivo de error 
+            echo ("Por favor, complete todos los campos obligatorios.");
+        } 
+
         $fecha = $_POST['fecha'];
         $hora = $_POST['hora'];
-        $consultorio = $_POST['consultorio'];
+        $consultorio = intval($_POST['consultorio']);
         $medico = $_POST['medico'];
-        $id_paciente = intval($_POST['id_paciente']);
 
-        if (!$turn) {
-            return $this->view->showHome();
-        }
-        $this->model->updateTurns($id,$fecha, $hora, $consultorio, $medico, $id_paciente );
-        header('Location:'. BASE_URL . 'home');
+        $this->model->updateTurns($id, $fecha, $hora, $consultorio, $medico);
+        header('Location:'. BASE_URL . 'turnos');
 
         if (!$turn) {
             return $this->view->showHome();

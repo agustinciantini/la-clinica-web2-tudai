@@ -52,4 +52,3 @@ class AuthController {
         header('Location: ' . BASE_URL);
     }
 }
-

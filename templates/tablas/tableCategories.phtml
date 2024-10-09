@@ -1,127 +1,129 @@
         <!--Imprime la tabla de categorias, nuestros pacientes.-->
         <div id="turnos" class="container my-5">
-        <h2 class="text-center mb-4">Nuestros pacientes con turnos</h2>
-        <table class="table table-striped">
+          <h2 class="text-center mb-4">Nuestros pacientes con turnos</h2>
+          <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>DNI</th>
-                    <th>Edad</th>
-                    <th>Enfermedad</th>
-                </tr>
-            </thead>
-            <tbody>
-        <?php foreach ($categories as $category) : ?>
-                <tr>
-                    <td><?=$category->id?></td>
-                    <td><?=$category->nombre?></td>
-                    <td><?=$category->apellido?></td>
-                    <td><?=$category->dni?></td>
-                    <td><?=$category->edad?></td>
-                    <td><?=$category->enfermedad?></td>    
- <!--Boton "Editar"--><td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
-<!--Boton "Eliminar"--><td><a href="<?= BASE_URL?>deleteCategories/<?=$category->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Edad</th>
+                <th>Enfermedad</th>
+                <th>
+                  <!--Boton "Agregar"-->
+                  <div class="text-center">
+                <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addPacienteModal">Agregar</a>
+                </td>
+        </div>
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($categories as $category) : ?>
+            <tr>
+              <td><?= $category->id ?></td>
+              <td><?= $category->nombre ?></td>
+              <td><?= $category->apellido ?></td>
+              <td><?= $category->dni ?></td>
+              <td><?= $category->edad ?></td>
+              <td><?= $category->enfermedad ?></td>
+              <!--Boton "Editar"-->
+              <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
+              <!--Boton "Eliminar"-->
+              <td><a href="<?= BASE_URL ?>deleteCategories/<?= $category->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
 
-                </tr>
-            <?php endforeach; ?>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
         </table>
         </div>
-        <!--Boton "Agregar"-->
-        <div class="text-center">
-        <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addPacienteModal">Agregar</a></td>
-        </div>
-             <!-- SI ES ADMINISTRADOR VE ESTOS BOTONES y sus FUNCIONES -->
 
+        <!-- SI ES ADMINISTRADOR VE ESTOS BOTONES y sus FUNCIONES -->
 
-   <!--Form para agregar Paciente-->
-  <div class="modal fade" id="addPacienteModal" tabindex="-1" aria-labelledby="addPacienteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addPacienteModalLabel">Agregar Paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!--Form para agregar Paciente-->
+        <div class="modal fade" id="addPacienteModal" tabindex="-1" aria-labelledby="addPacienteModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addPacienteModalLabel">Agregar Paciente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="createCategories" method="POST">
+                  <div class="mb-3">
+                    <label for="pacienteNombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="pacienteNombre" name="nombrePaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="apellidoPaciente" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="pacienteNombre" name="apellidoPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacienteDni" class="form-label">DNI</label>
+                    <input type="number" class="form-control" id="pacienteEdad" name="dniPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacienteEdad" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="pacienteEdad" name="edadPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacienteEnfermedad" class="form-label">Enfermedad</label>
+                    <input type="text" class="form-control" id="pacienteEnfermedad" name="enfermedadPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacientemedico" class="form-label">Médico</label>
+                    <input type="text" class="form-control" id="pacienteEnfermedad" name="medicoPaciente" required>
+                  </div>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" method="POST" class="btn btn-primary">Agregar Paciente</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-          <form action="createCategories" method="POST">
-          <div class="mb-3">
-              <label for="pacienteNombre" class="form-label" >Nombre</label>
-              <input type="text" class="form-control" id="pacienteNombre" name="nombrePaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="apellidoPaciente" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="pacienteNombre" name="apellidoPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteDni" class="form-label">Dni</label>
-              <input type="number" class="form-control" id="pacienteEdad" name="dniPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteEdad" class="form-label" >Edad</label>
-              <input type="number" class="form-control" id="pacienteEdad" name="edadPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteEnfermedad" class="form-label" >Enfermedad</label>
-              <input type="text" class="form-control" id="pacienteEnfermedad" name="enfermedadPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacientemedico" class="form-label" >Medico</label>
-              <input type="text" class="form-control" id="pacienteEnfermedad" name="medicoPaciente" required>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" method="POST" class="btn btn-primary">Agregar Paciente</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!--Form para editar Paciente -->
-  <div class="modal fade" id="editPacienteModal" tabindex="-1" aria-labelledby="editPacienteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editPacienteModalLabel">Editar Paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!--Form para editar Paciente -->
+        <div class="modal fade" id="editPacienteModal" tabindex="-1" aria-labelledby="editPacienteModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editPacienteModalLabel">Editar Paciente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="updateCategories/<?= $category->id ?>" method="POST">
+                  <div class="mb-3">
+                    <label for="pacienteNombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="pacienteNombre" name="nombrePaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="apellidoPaciente" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="pacienteNombre" name="apellidoPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacienteDni" class="form-label">DNI</label>
+                    <input type="number" class="form-control" id="pacienteEdad" name="dniPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacienteEdad" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="pacienteEdad" name="edadPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacienteEnfermedad" class="form-label">Enfermedad</label>
+                    <input type="text" class="form-control" id="pacienteEnfermedad" name="enfermedadPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="pacientemedico" class="form-label">Médico</label>
+                    <input type="text" class="form-control" id="pacienteEnfermedad" name="medicoPaciente" required>
+                  </div>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" method="POST" class="btn btn-primary">Editar Paciente</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-        <form action="updateCategories/<?=$category->id ?>" method="POST">
-          <div class="mb-3">
-              <label for="pacienteNombre" class="form-label" >Nombre</label>
-              <input type="text" class="form-control" id="pacienteNombre" name="nombrePaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="apellidoPaciente" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="pacienteNombre" name="apellidoPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteDni" class="form-label">Dni</label>
-              <input type="number" class="form-control" id="pacienteEdad" name="dniPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteEdad" class="form-label" >Edad</label>
-              <input type="number" class="form-control" id="pacienteEdad" name="edadPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteEnfermedad" class="form-label" >Enfermedad</label>
-              <input type="text" class="form-control" id="pacienteEnfermedad" name="enfermedadPaciente" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacientemedico" class="form-label" >Medico</label>
-              <input type="text" class="form-control" id="pacienteEnfermedad" name="medicoPaciente" required>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" method="POST" class="btn btn-primary">Editar Paciente</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-        <?php    require_once './templates/layout/footer.phtml'; 
-
-        
-        
+        <?php require_once './templates/layout/footer.phtml';
