@@ -1,7 +1,7 @@
 <?php
 require_once './app/models/modelTurns.php';
 require_once './app/views/viewTurns.php';
-class controller{
+class controllerTurns{
     private $view;
     private $model;
 

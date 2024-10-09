@@ -20,19 +20,19 @@
                     <td><?=$turn->hora?></td>
                     <td><?=$turn->fecha?></td>
                     <td><a class="btn text-black" href="detalle/<?=$turn->id?>">Ver más</a></td>
-                    <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
-                    <td><a href="<?= BASE_URL?>deleteTurns/<?=$turn->id ?>" class="btn text-white btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTurnoModal" data-id="001">Eliminar</a></td>
-                </tr>            
+ <!--Boton "Editar"--><td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
+<!--Boton "Eliminar"--><td><a href="<?= BASE_URL?>deleteTurns/<?=$turn->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
+</tr>            
             <?php endforeach; ?>
             </tbody>
         </table>
         </div>
+        <!--Boton "Agregar"-->
         <div class="text-center">
         <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
         </div>
         <!-- SI ES ADMINISTRADOR VE ESTOS BOTONES y sus FUNCIONES -->
-
- <!--Modal para agregar Turno -->
+ <!--Form para agregar Turno -->
   <div class="modal fade" id="addTurnoModal" tabindex="-1" aria-labelledby="addTurnoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -77,7 +77,7 @@
     </div>
   </div>
 
-   <!--Modal para editar Turno -->
+   <!--Form para editar Turno -->
   <div class="modal fade" id="editTurnoModal" tabindex="-1" aria-labelledby="editTurnoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -109,94 +109,6 @@
             </div>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             <button type="submit" method="POST" class="btn btn-primary">Guardar Cambios</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
-
-   <!--Modal para agregar Paciente-->
-  <div class="modal fade" id="addPacienteModal" tabindex="-1" aria-labelledby="addPacienteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addPacienteModalLabel">Agregar Paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="pacienteID" class="form-label">ID Paciente</label>
-              <input type="text" class="form-control" id="pacienteID" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteNombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="pacienteNombre" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteEdad" class="form-label">Edad</label>
-              <input type="number" class="form-control" id="pacienteEdad" required>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteGenero" class="form-label">Género</label>
-              <select class="form-select" id="pacienteGenero" required>
-                <option value="">Seleccionar...</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="pacienteEmail" class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-control" id="pacienteEmail" required>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Agregar Paciente</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--Modal para editar Paciente -->
-  <div class="modal fade" id="editPacienteModal" tabindex="-1" aria-labelledby="editPacienteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editPacienteModalLabel">Editar Paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="editPacienteID" class="form-label">ID Paciente</label>
-              <input type="text" class="form-control" id="editPacienteID" required>
-            </div>
-            <div class="mb-3">
-              <label for="editPacienteNombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="editPacienteNombre" required>
-            </div>
-            <div class="mb-3">
-              <label for="editPacienteEdad" class="form-label">Edad</label>
-              <input type="number" class="form-control" id="editPacienteEdad" required>
-            </div>
-            <div class="mb-3">
-              <label for="editPacienteGenero" class="form-label">Género</label>
-              <select class="form-select" id="editPacienteGenero" required>
-                <option value="">Seleccionar...</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="editPacienteEmail" class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-control" id="editPacienteEmail" required>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Guardar Cambios</button>
           </form>
         </div>
         <div class="modal-footer">
