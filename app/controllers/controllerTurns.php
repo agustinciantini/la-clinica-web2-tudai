@@ -1,13 +1,21 @@
 <?php
 require_once './app/models/modelTurns.php';
 require_once './app/views/viewTurns.php';
+require_once './app/models/modelCategory.php';
+require_once './app/views/viewCategory.php';
+
 class controllerTurns{
     private $view;
     private $model;
+    private $modelCategory;
+    private $viewCategory;
 
     public function __construct(){
         $this->view = new ViewTurns();
         $this->model = new ModelTurns();
+        $this->modelCategory = new modelCategory();
+        $this->viewCategory = new viewCategory();
+        
     }
     public function showHome(){  //Muestra el home.
         $this->view->showHome();
@@ -17,14 +25,22 @@ class controllerTurns{
     }
     public function getTurns(){  //Muestra turnos.
         $turns = $this->model->getTurns();
-        $this->view->showTurns($turns);
+        $categories = $this->modelCategory->getCategories();
+        $this->view->showTurns($turns, $categories);
     }
     public function getTurnById($id){ //Muestra un turno especifico (id).
-        $turnos = $this->model->getTurnById($id);
-        if(!$turnos){
+        $turn = $this->model->getTurnById($id);
+        if(!$turn){
             echo("no existe");
         }
-        $this->view->showTurnById($turnos);
+        $this->view->showTurnById($turn);
+    }
+    public function getTurnsByIdCategory($id){
+        $turns = $this->model->getTurnsByIdCategory($id);
+        if(!$turns){
+            //$_SESSION==null
+        }
+        $this->viewCategory->showTurnsByIdCategory($turns);
     }
     public function createTurns(){
         if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
@@ -38,8 +54,8 @@ class controllerTurns{
         $hora = $_POST['hora'];
         $consultorio = $_POST['consultorio'];
         $medico = $_POST['medico'];
-        $id_paciente = intval($_POST['id_paciente']);
-
+        $id_paciente = $_POST['id_paciente'];
+        var_dump($id_paciente);
         $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
         $this->view->showTurnById($turn);
         

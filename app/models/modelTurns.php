@@ -21,6 +21,15 @@ class modelTurns{
         }
         return $turn;
     }
+    public function getTurnsByIdCategory($id){
+        $query = $this->db -> prepare('SELECT * FROM turno WHERE id_paciente = ?');
+        $query->execute([$id]);
+        $Categories=$query->fetchAll(PDO::FETCH_OBJ);
+        if (!$Categories) {
+            return null;
+        }
+        return $Categories;
+    }
     public function createTurns($fecha, $hora, $consultorio, $medico, $id_paciente){ 
         $query= $this->db->prepare("INSERT INTO turno (fecha, hora, consultorio, medico, id_paciente) VALUES (?,?,?,?,?)");
         $result = $query->execute([$fecha, $hora, $consultorio, $medico, $id_paciente]);

@@ -28,11 +28,6 @@ class modelCategory{
         $query=$this->db->prepare('DELETE FROM paciente WHERE paciente . id = ?');
         $query->execute([$id]);
     }
-    // public function updateCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente){
-    //     $query=$this->db->prepare("UPDATE paciente SET nombre=?, apellido=?, dni=?, edad=?, enfermedad=?, medico=? WHERE paciente .id = ?");
-    //     //RECIBE TODOS LOS DATOS COMO STRING.
-    //     $query->execute([ $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente]);
-    // }
     public function updateCategories($idPaciente, $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente){
         $query = $this->db->prepare("UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, edad = ?, enfermedad = ?, medico = ? WHERE id = ?");
         $query->execute([ $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $idPaciente ]);

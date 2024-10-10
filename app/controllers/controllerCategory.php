@@ -31,8 +31,8 @@ class controllerCategory{
         }
         $nombrePaciente = $_POST['nombrePaciente'];
         $apellidoPaciente = $_POST['apellidoPaciente'];
-        $dniPaciente = intval($_POST['dniPaciente']);
-        $edadPaciente = intval($_POST['edadPaciente']);
+        $dniPaciente = $_POST['dniPaciente'];
+        $edadPaciente = $_POST['edadPaciente'];
         $enfermedadPaciente = $_POST['enfermedadPaciente'];
         $medicoPaciente = $_POST['medicoPaciente'];
 

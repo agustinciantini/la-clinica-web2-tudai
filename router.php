@@ -40,6 +40,11 @@ switch ($params[0]) {
         $controller->getTurnById($params[1]);
         break;
 
+    case 'ver';
+    $controller = new controllerTurns();
+    $controller->getTurnsByIdCategory($params[1]);
+    break;    
+
     case 'login';
         $controller = new AuthController();
         $controller->login();
@@ -57,6 +62,7 @@ switch ($params[0]) {
 
     case 'deleteTurns':
         $controller = new controllerTurns();
+        
         $controller->deleteTurns($params[1]);
         break;
 

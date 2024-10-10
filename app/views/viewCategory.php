@@ -9,4 +9,7 @@ class viewCategory{
     public function showCategories($categories){     //imprimir pacientes (categorias)
         require_once './templates/tablas/tableCategories.phtml';
     }
+    public function showTurnsByIdCategory($turns){
+        require_once './templates/tablas/turnsByIdCategory.phtml';   
+    }
 }

@@ -1,8 +1,12 @@
-<?php require_once './templates/layout/header.phtml'; ?>
+<?php require_once './templates/layout/header.phtml';
+?>
+<h2 class="text-primary">Detalles del Turno</h2>
 
+<?php if($turns == null) :?>
+    <h2>NO TIENE TURNOS</h2>
+<?php else:
+foreach($turns as $turn) : ?>
 <div class="container mt-4">
-    <h2 class="text-primary">Detalles del Turno</h2>
-
     <table class="table table-striped table-hover mt-3" style="border: 1px solid #bcd4e6;">
         <tbody>
             <tr>
@@ -32,3 +36,5 @@
         </tbody>
     </table>
 </div>
+<?php endforeach; 
+endif ;?>

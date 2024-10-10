@@ -4,12 +4,12 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>DNI</th>
                 <th>Edad</th>
                 <th>Enfermedad</th>
+                <th>Ver Turnos</th>
                 <th>
                   <!--Boton "Agregar"-->
                   <div class="text-center">
@@ -22,17 +22,16 @@
         <tbody>
           <?php foreach ($categories as $category) : ?>
             <tr>
-              <td><?= $category->id ?></td>
               <td><?= $category->nombre ?></td>
               <td><?= $category->apellido ?></td>
               <td><?= $category->dni ?></td>
               <td><?= $category->edad ?></td>
               <td><?= $category->enfermedad ?></td>
+              <td><a class="btn btn-link text-black" href="ver/<?= $category->id?> ">Ver más</a></td>
               <!--Boton "Editar"-->
               <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteCategories/<?= $category->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
-
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -74,6 +73,10 @@
                   <div class="mb-3">
                     <label for="pacientemedico" class="form-label">Médico</label>
                     <input type="text" class="form-control" id="pacienteEnfermedad" name="medicoPaciente" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="imgPaciente" class="form-label">Img</label>
+                    <input type="url" class="form-control" id="imgPaciente" name="imgPaciente">
                   </div>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                   <button type="submit" method="POST" class="btn btn-primary">Agregar Paciente</button>
