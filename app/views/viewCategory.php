@@ -12,4 +12,7 @@ class viewCategory{
     public function showTurnsByIdCategory($turns){
         require_once './templates/tablas/turnsByIdCategory.phtml';   
     }
+    public function showError($error) {
+        require 'templates/error.phtml';
+    }
 }

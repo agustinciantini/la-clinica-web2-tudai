@@ -15,7 +15,6 @@ class controllerTurns{
         $this->model = new ModelTurns();
         $this->modelCategory = new modelCategory();
         $this->viewCategory = new viewCategory();
-        
     }
     public function showHome(){  //Muestra el home.
         $this->view->showHome();
@@ -28,12 +27,14 @@ class controllerTurns{
         $categories = $this->modelCategory->getCategories();
         $this->view->showTurns($turns, $categories);
     }
-    public function getTurnById($id){ //Muestra un turno especifico (id).
-        $turn = $this->model->getTurnById($id);
-        if(!$turn){
-            echo("no existe");
-        }
-        $this->view->showTurnById($turn);
+    public function getTurnById($id) { 
+        $turn = $this->model->getTurnById($id);        
+        if (!$turn) {
+            return $this->view->showError("Ocurrió un error, ¡Vuelve a intentar!");
+        }    
+        $id_paciente = $turn->id_paciente; 
+        $paciente = $this->modelCategory->getCategoryById($id_paciente);     
+        return $this->view->showTurnById($turn, $paciente); 
     }
     public function getTurnsByIdCategory($id){
         $turns = $this->model->getTurnsByIdCategory($id);
@@ -44,10 +45,11 @@ class controllerTurns{
     }
     public function createTurns(){
         if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
-            return $this->view->showHome(); // crear msj de error
+            return $this->view->showError("Ocurrio un error, ¡Vuelve a intentar!");
+
         }
         if (!isset($_POST['hora']) || empty($_POST['hora'])) {
-            return $this->view->showHome();
+            return $this->view->showError("Ocurrio un error, ¡Vuelve a intentar!");
         }
 
         $fecha = $_POST['fecha'];
@@ -57,8 +59,7 @@ class controllerTurns{
         $id_paciente = $_POST['id_paciente'];
         var_dump($id_paciente);
         $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
-        $this->view->showTurnById($turn);
-        
+
         header('Location:'. BASE_URL . 'turnos');
     }
     public function deleteTurns($id) {
@@ -75,14 +76,13 @@ class controllerTurns{
         $turn = $this->model->getTurnById($id);
 
         if (!$turn) {
-            echo("El turno no exixte"); 
+            return $this->view->showError("Ocurrio un error, ¡Vuelve a intentar!");
         }
         if (!isset($_POST['fecha']) || empty($_POST['fecha']) || 
         !isset($_POST['hora']) || empty($_POST['hora']) || 
         !isset($_POST['consultorio']) || empty($_POST['consultorio']) || 
         !isset($_POST['medico']) || empty($_POST['medico'])) {
-            // archivo de error 
-            echo ("Por favor, complete todos los campos obligatorios.");
+            return $this->view->showError("Ocurrio un error, complete los campos necesarios.");
         } 
 
         $fecha = $_POST['fecha'];

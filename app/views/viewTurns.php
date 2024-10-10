@@ -10,7 +10,10 @@ class viewTurns{
     public function showTurns($turns, $categories){     //imprime la tabla de turnos (items)
         require_once './templates/tablas/tableTurns.phtml';
     }
-    public function showTurnById($turn){      //imprime un turno segun id.
+    public function showTurnById($turn, $persona) { // Imprime un turno según id.
         require_once './templates/tablas/turnById.phtml'; 
+    }
+    public function showError($error) {
+        require 'templates/error.phtml';
     }
 }

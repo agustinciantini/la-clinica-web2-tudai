@@ -24,10 +24,10 @@ class controllerCategory{
     }
     public function createCategories(){
         if (!isset($_POST['nombrePaciente']) || empty($_POST['nombrePaciente'])) {
-            return $this->view->showHome(); // crear msj de error
+            return $this->view->showError(error: "Ocurrio un error, ¡Vuelve a intentar!.");
         }
         if (!isset($_POST['apellidoPaciente']) || empty($_POST['apellidoPaciente'])) {
-            return $this->view->showHome();
+            return $this->view->showError(error: "Ocurrio un error, ¡Vuelve a intentar!.");
         }
         $nombrePaciente = $_POST['nombrePaciente'];
         $apellidoPaciente = $_POST['apellidoPaciente'];
