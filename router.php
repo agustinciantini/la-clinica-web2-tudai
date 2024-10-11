@@ -55,33 +55,38 @@ switch ($params[0]) {
         break;
     
     case 'createTurns':
+        sessionAuthMiddleware($res); //no estoy segura de q era asi
         $controller = new controllerTurns();
         $controller->createTurns();
         break;
         
     case 'deleteTurns':
+        sessionAuthMiddleware($res); //no estoy segura de q era asi
         $controller = new controllerTurns();
         $controller->deleteTurns($params[1]);
         break;
         
     case 'updateTurns':
+        sessionAuthMiddleware($res); //no estoy segura de q era asi
         $controller = new controllerTurns();
         $controller->updateTurns($params[1]);
         break;
 
     case 'deleteCategories':
+        sessionAuthMiddleware($res); //no estoy segura de q era asi
         $controller = new controllerCategory();
         $controller->deleteCategories($params[1]);
         break;
 
     case 'createCategories':
+        sessionAuthMiddleware($res); //no estoy segura de q era asi
         $controller = new controllerCategory();
         $controller->createCategories(); 
         break;
         
     case 'updateCategories':
+        sessionAuthMiddleware($res); //no estoy segura de q era asi
         $controller = new controllerCategory();
-        var_dump($params[1]);
         $controller->updateCategories($params[1]);
         break;
 }

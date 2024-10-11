@@ -56,11 +56,15 @@ class controllerTurns{
         $hora = $_POST['hora'];
         $consultorio = $_POST['consultorio'];
         $medico = $_POST['medico'];
-        $id_paciente = $_POST['id_paciente'];
-        var_dump($id_paciente);
+        //Si no hay categorias no puede hacer un turno.
+        if(!isset($_POST['id_paciente'])){
+            $this->view->showError("NO HAY CATEGORIAS");
+        }else{
+            $id_paciente = $_POST['id_paciente'];
         $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
-
+    
         header('Location:'. BASE_URL . 'turnos');
+    }
     }
     public function deleteTurns($id) {
         $turn = $this->model->getTurnById($id);

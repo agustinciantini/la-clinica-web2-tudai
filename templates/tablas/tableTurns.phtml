@@ -6,7 +6,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Identificación de Turno (ID)</th>
+                <th>Medico</th>
                 <th>Fecha</th>
                 <th>Hora</th>
                 <th>Detalles</th>
@@ -14,7 +14,8 @@
                   <!--Boton "Agregar"-->
                   <div class="text-center">
                 <td>
-                <?php if (empty($_SESSION['ID_USER'])): ?>
+                  <!--Si el usuario esta logueado mostrar boton "Agregar"-->
+                <?php if (!empty($_SESSION['ID_USER'])): ?>
                   <a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
                 <?php endif; ?>
         </div>
@@ -24,14 +25,14 @@
         <tbody>
           <?php foreach ($turns as $turn) : ?>
             <tr>
-              <td><?=$turn->id?></td>
+              <td><?= $turn->medico ?></td>
               <td><?= $turn->fecha ?></td>
               <td><?= $turn->hora ?></td>
-              <!--empty($_SESSION['ID_USER']) SI NO ESTA VACIO SE MUESTRA-->
               <td><a class="btn btn-link text-black" href="detalle/<?= $turn->id ?>">Ver más</a></td>
-              <?php if (empty($_SESSION['ID_USER'])): ?>
+              <!--Si estas logueado, mostrar botones-->
+              <?php if (!empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
-              <td><a href="<?= BASE_URL ?>editTurns/<?= $turn->id ?>" class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal">Editar</a></td>
+              <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteTurns/<?= $turn->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
               <?php endif; ?>
@@ -62,7 +63,7 @@
                     <input type="time" name="hora" class="form-control" id="horaTurno" required>
                   </div>
                   <div class="mb-3">
-                    <label for="medicoTurno" class="form-label">Consultorio</label>
+                    <label for="medicoTurno" class="form-label">Nro. Consultorio</label>
                     <input type="text" name="consultorio" class="form-control" id="consultorioTurno" required>
                   </div>
                   <div class="mb-3">
@@ -72,13 +73,17 @@
                   <div class="mb-3">
                     <Label>Nombre del Paciente</Label>
                     <select name="id_paciente" for="medicoTurno" class="form-label">
+                      <!--select con nombres de los pacientes-->
                     <?php foreach($categories as $category):?>
                     <option value="<?= $category->id ?>"><?=$category->nombre?></option>
                     <?php endforeach; ?>
                     </select>
                     </div>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-primary">Agregar Turno</button>
+                  <!--Si no hay categorias, no puede agregar un turno-->
+                  <?php if(!empty($categories)) : ?>
+                    <button type="submit" class="btn btn-primary">Agregar Turno</button>
+                  <?php endif; ?>
                 </form>
               </div>
               <div class="modal-footer">
@@ -96,7 +101,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-
+                    <!--TOMA SIEMPRE EL ID DEL ULTIMO!!!!!-->
                 <form action="<?= BASE_URL ?>updateTurns/<?= $turn->id ?>" method="POST">
                   <div class="mb-3">
                     <label for="editFechaTurno" class="form-label">Fecha</label>

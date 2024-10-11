@@ -11,10 +11,13 @@
                 <th>Enfermedad</th>
                 <th>Ver Turnos</th>
                 <th>
-                  <!--Boton "Agregar"-->
-                  <div class="text-center">
-                <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addPacienteModal">Agregar</a>
-                </td>
+                <!--Boton "Agregar"-->
+                <div class="text-center">
+                <td>
+                  <!--Si el usuario esta logueado mostrar boton "Agregar"-->
+                <?php if (!empty($_SESSION['ID_USER'])): ?>
+                  <a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
+                <?php endif; ?>
         </div>
         </th>
         </tr>
@@ -28,10 +31,13 @@
               <td><?= $category->edad ?></td>
               <td><?= $category->enfermedad ?></td>
               <td><a class="btn btn-link text-black" href="ver/<?= $category->id?> ">Ver más</a></td>
+             <!--Si estas logueado, mostrar botones-->
+             <?php if (!empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
-              <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal" data-id="001" data-nombre="Juan Pérez" data-fecha="2024-10-15" data-especialidad="Cardiología" data-medico="Dr. González">Editar</a></td>
+              <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteCategories/<?= $category->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
+              <?php endif; ?>            
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -97,7 +103,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="updateCategories/<?= $category->id ?>" method="POST">
+                <!--TOMA SIEMPRE EL ID DEL ULTIMO!!!!!-->
+                <form action="<?= BASE_URL ?>updateTurns/<?= $category->id ?>" method="POST">
                   <div class="mb-3">
                     <label for="pacienteNombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="pacienteNombre" name="nombrePaciente" required>
