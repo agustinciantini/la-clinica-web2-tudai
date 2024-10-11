@@ -38,17 +38,22 @@ class AuthController {
             $_SESSION['ID_USER'] = $userFromDB->id;
             $_SESSION['EMAIL_USER'] = $userFromDB->email;
             $_SESSION['LAST_ACTIVITY'] = time();
-    
             // Redirijo al home
             header('Location: ' . BASE_URL);
         } else {
             return $this->view->showLogin('Credenciales incorrectas...');
         }
     }
+    public function checkSession(){
+        if(!empty($_SESSION['ID_USER'] == null)){
+            return false;
+        }
+        return true;
+    }
 
     public function logout() {
         session_start(); // Va a buscar la cookie
         session_destroy(); // Borra la cookie que se buscó
-        header('Location: ' . BASE_URL);
+        header('Location: ' . BASE_URL. 'home');
     }
 }

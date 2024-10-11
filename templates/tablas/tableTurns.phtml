@@ -13,7 +13,10 @@
                 <th>
                   <!--Boton "Agregar"-->
                   <div class="text-center">
-                <td><a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
+                <td>
+                <?php if (empty($_SESSION['ID_USER'])): ?>
+                  <a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
+                <?php endif; ?>
         </div>
         </th>
         </tr>
@@ -26,10 +29,12 @@
               <td><?= $turn->hora ?></td>
               <!--empty($_SESSION['ID_USER']) SI NO ESTA VACIO SE MUESTRA-->
               <td><a class="btn btn-link text-black" href="detalle/<?= $turn->id ?>">Ver más</a></td>
+              <?php if (empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
               <td><a href="<?= BASE_URL ?>editTurns/<?= $turn->id ?>" class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteTurns/<?= $turn->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
+              <?php endif; ?>
             </tr>
           <?php endforeach; ?>
         </tbody>

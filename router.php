@@ -18,7 +18,6 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'home';
-        sessionAuthMiddleware($res);
         $controller = new controllerTurns();
         $controller->showHome();
         break;
@@ -41,9 +40,9 @@ switch ($params[0]) {
         break;
 
     case 'ver';
-    $controller = new controllerTurns();
-    $controller->getTurnsByIdCategory($params[1]);
-    break;    
+        $controller = new controllerTurns();
+        $controller->getTurnsByIdCategory($params[1]);
+        break;    
 
     case 'login';
         $controller = new AuthController();
@@ -59,13 +58,12 @@ switch ($params[0]) {
         $controller = new controllerTurns();
         $controller->createTurns();
         break;
-
+        
     case 'deleteTurns':
         $controller = new controllerTurns();
-        
         $controller->deleteTurns($params[1]);
         break;
-
+        
     case 'updateTurns':
         $controller = new controllerTurns();
         $controller->updateTurns($params[1]);
