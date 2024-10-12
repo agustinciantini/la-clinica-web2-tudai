@@ -11,12 +11,10 @@ class AuthController {
         $this->view = new AuthView();
     }
 
-    public function showLogin() {
-        // Muestro el formulario de login
+    public function showLogin() { // Muestro el formulario de login
         return $this->view->showLogin();
     }
-
-    public function login() {
+    public function login() { //Loguearse.
         //Llegan por POST los datos del formulario.
         if (!isset($_POST['user']) || empty($_POST['user'])) {
             return $this->view->showLogin('Falta completar el nombre de usuario.');
@@ -45,15 +43,14 @@ class AuthController {
         }
     }
     public function checkSession(){
-        if(!empty($_SESSION['ID_USER'] == null)){
+        if(!empty($_SESSION['ID_USER'] == null)){ //Checkea si el usuario está logueado.
             return false;
         }
         return true;
     }
-
-    public function logout() {
+    public function logout() { //Desloguearse.
         session_start(); // Va a buscar la cookie
         session_destroy(); // Borra la cookie que se buscó
-        header('Location: ' . BASE_URL. 'home');
+        header('Location: ' . BASE_URL. 'home'); //Redirije al home.
     }
 }

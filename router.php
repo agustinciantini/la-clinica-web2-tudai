@@ -27,19 +27,19 @@ switch ($params[0]) {
         $controller->showFAQ();
         break;
 
-    case 'turnos';
+    case 'turnos'; //Mostrar ítems(turnos) y categorías(pacientes).
         $controller = new controllerTurns();
         $controllerCategory = new controllerCategory();
         $controller->getTurns();
         $controllerCategory->getCategories();
         break;
 
-    case 'detalle';
+    case 'detalle'; //Ver detalle de un ítem(turno).
         $controller = new controllerTurns();
         $controller->getTurnById($params[1]);
         break;
 
-    case 'ver';
+    case 'ver';  //Ver detalle de una categoría(paciente).
         $controller = new controllerTurns();
         $controller->getTurnsByIdCategory($params[1]);
         break;    
@@ -53,39 +53,44 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showLogin();
         break;
+
+    case 'logout';
+        $controller = new AuthController();
+        $controller->logout();
+        break;
     
     case 'createTurns':
-        sessionAuthMiddleware($res); //no estoy segura de q era asi
+        sessionAuthMiddleware($res); //Consultar
         $controller = new controllerTurns();
         $controller->createTurns();
         break;
         
     case 'deleteTurns':
-        sessionAuthMiddleware($res); //no estoy segura de q era asi
+        sessionAuthMiddleware($res); //Consultar
         $controller = new controllerTurns();
         $controller->deleteTurns($params[1]);
         break;
         
     case 'updateTurns':
-        sessionAuthMiddleware($res); //no estoy segura de q era asi
+        sessionAuthMiddleware($res); //Consultar
         $controller = new controllerTurns();
         $controller->updateTurns($params[1]);
         break;
 
+    case 'createCategories':
+        sessionAuthMiddleware($res); //Consultar
+        $controller = new controllerCategory();
+        $controller->createCategories(); 
+        break;
+
     case 'deleteCategories':
-        sessionAuthMiddleware($res); //no estoy segura de q era asi
+        sessionAuthMiddleware($res); //Consultar
         $controller = new controllerCategory();
         $controller->deleteCategories($params[1]);
         break;
 
-    case 'createCategories':
-        sessionAuthMiddleware($res); //no estoy segura de q era asi
-        $controller = new controllerCategory();
-        $controller->createCategories(); 
-        break;
-        
     case 'updateCategories':
-        sessionAuthMiddleware($res); //no estoy segura de q era asi
+        sessionAuthMiddleware($res); //Consultar
         $controller = new controllerCategory();
         $controller->updateCategories($params[1]);
         break;

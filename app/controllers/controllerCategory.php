@@ -9,20 +9,11 @@ class controllerCategory{
         $this->view = new viewCategory();
         $this->model = new Modelcategory();
     }
-    public function getCategories(){  //Muestra categorias.
+    public function getCategories(){  //Obtiene categorias a mostrar.
         $categories = $this->model->getCategories();
         $this->view->showCategories($categories);
     }
-    public function deleteCategories($id) {
-        $category = $this->model->getCategoryById($id);
-        
-        if (!$category) {
-            return $this->view->showHome();
-        }
-        $this->model->deleteCategories($id);
-        header('Location:'. BASE_URL . 'home');
-    }
-    public function createCategories(){
+    public function createCategories(){  //Pasa datos para crear una categoría en la db.
         if (!isset($_POST['nombrePaciente']) || empty($_POST['nombrePaciente'])) {
             return $this->view->showError(error: "Ocurrio un error, ¡Vuelve a intentar!.");
         }
@@ -39,10 +30,17 @@ class controllerCategory{
         $category = $this->model->createCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente);
         $this->view->showHome();
     }
-    public function updateCategories($id){
+    public function deleteCategories($id) { //Obtiene categoría a borar.
         $category = $this->model->getCategoryById($id);
-        //tare todos los datos como string.
-        var_dump($category);
+        
+        if (!$category) {
+            return $this->view->showHome();
+        }
+        $this->model->deleteCategories($id);
+        header('Location:'. BASE_URL . 'home');
+    }
+    public function updateCategories($id){  //Obtiene categoría a editar.
+        $category = $this->model->getCategoryById($id);
         if (!$category) {
             return $this->view->showHome();
         }

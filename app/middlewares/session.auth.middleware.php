@@ -1,5 +1,5 @@
 <?php
-    function sessionAuthMiddleware($res) {
+    function sessionAuthMiddleware($res) {  //Verificar si el usuario está logueado.
         session_start();
         if(isset($_SESSION['ID_USER'])){
             $res->user = new stdClass();
