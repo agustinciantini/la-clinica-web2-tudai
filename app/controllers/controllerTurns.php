@@ -3,6 +3,7 @@ require_once './app/models/modelTurns.php';
 require_once './app/views/viewTurns.php';
 require_once './app/models/modelCategory.php';
 require_once './app/views/viewCategory.php';
+require_once './app/models/modelDeploy.php';
 
 class controllerTurns{
     private $view;

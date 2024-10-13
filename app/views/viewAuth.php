@@ -7,7 +7,4 @@ class AuthView {
         require './templates/login.phtml';
     }
 
-    public function showSignup($error = '') {
-        require './templates/form_signup.phtml';          //DUDA
-    }
 }

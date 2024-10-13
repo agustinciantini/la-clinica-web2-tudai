@@ -1,4 +1,6 @@
 <?php
+require_once './app/models/modelDeploy.php';
+require_once './config.php';
 
 class modelTurns{
     private $db;

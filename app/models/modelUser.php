@@ -1,4 +1,5 @@
 <?php
+require_once './app/models/modelDeploy.php';
 
 class UserModel {
     private $db;

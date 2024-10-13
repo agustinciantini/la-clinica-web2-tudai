@@ -1,6 +1,7 @@
 <?php
 require_once './app/models/Modelcategory.php';
 require_once './app/views/viewCategory.php';
+require_once './app/models/modelDeploy.php';
 
 class controllerCategory{
     private $view;

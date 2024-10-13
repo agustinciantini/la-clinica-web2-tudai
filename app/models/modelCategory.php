@@ -1,5 +1,9 @@
 <?php
+require_once './app/models/modelDeploy.php';
+require_once './config.php';
+
 class modelCategory{
+
     private $db;
     public function __construct(){
         $this->db = new PDO('mysql:host=localhost;dbname=clinica;charset=utf8', 'root', '');
