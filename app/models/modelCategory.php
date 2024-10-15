@@ -34,8 +34,8 @@ class modelCategory{
         $query->execute([$id]);
     }
     //Edita una categoría de la db según ID.
-    public function updateCategories($idPaciente, $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente){
-        $query = $this->db->prepare("UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, edad = ?, enfermedad = ?, medico = ? WHERE id = ?");
-        $query->execute([ $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $idPaciente ]);
+    public function updateCategories($idPaciente, $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente){
+        $query = $this->db->prepare("UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, edad = ?, enfermedad = ?, medico = ?, img = ? WHERE id = ?");
+        $query->execute([ $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente, $idPaciente ]);
     }
 }

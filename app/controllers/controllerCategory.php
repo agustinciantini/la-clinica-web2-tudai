@@ -53,9 +53,10 @@ class controllerCategory{
         $edadPaciente = intval($_POST['edadPaciente']);
         $enfermedadPaciente = $_POST['enfermedadPaciente'];
         $medicoPaciente = $_POST['medicoPaciente'];
+        $imgPaciente = $_POST['imgPaciente'];
 
       
-        $this->model->updateCategories($id, $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente);
+        $this->model->updateCategories($id, $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente);
         header('Location:'. BASE_URL . 'turnos');
     }
 }
