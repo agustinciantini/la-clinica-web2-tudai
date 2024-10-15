@@ -55,7 +55,7 @@ abstract class modelDeploy {
 
               PRIMARY KEY (`id`),
               KEY `id_paciente` (`id_paciente`),
-              CONSTRAINT `fk_paciente` FOREIGN KEY (`id_paciente`) REFERENCES `id` (`id`) ON DELETE CASCADE
+              CONSTRAINT `turno_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id`) ON DELETE CASCADE
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
             SQL;
             $this->db->query($sql);
@@ -86,6 +86,7 @@ abstract class modelDeploy {
             `edad` int(100) NOT NULL,
             `enfermedad` varchar(100) NOT NULL,
             `medico` varchar(100) NOT NULL
+            `img` varchar(300) NOT NULL
 
               PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

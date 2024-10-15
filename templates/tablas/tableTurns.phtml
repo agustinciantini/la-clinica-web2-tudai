@@ -106,7 +106,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                    <!--TOMA SIEMPRE EL ID DEL ULTIMO!!!!!-->
+                    <!--TOMA SIEMPRE EL ID DEL ULTIMO, YA QUE EL FORMULARIO ESTÁ EN UN MODAL. 
+                    UNA SOLUCIÓN SERIA CREAR EL FORMULARIO SIN MODAL EN UNA PÁGINA NUEVA.-->
                 <form action="<?= BASE_URL ?>updateTurns/<?= $turn->id ?>" method="POST">
                   <div class="mb-3">
                     <label for="editFechaTurno" class="form-label">Fecha</label>
