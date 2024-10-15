@@ -1,5 +1,7 @@
 <?php
-session_start(); // Asegúrate de iniciar la sesión
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $res = !empty($_SESSION['ID_USER']);
 ?>
 

@@ -32,7 +32,7 @@
               <!--Si estas logueado, mostrar botones-->
               <?php if (!empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
-              <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal">Editar</a></td>
+              <td><a href= "<?=BASE_URL ?>updateTurns/<?= $turn->id ?>" class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteTurns/<?= $turn->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
               <?php endif; ?>
