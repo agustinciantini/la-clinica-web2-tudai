@@ -40,7 +40,8 @@
               <!--Si estas logueado, mostrar botones-->
              <?php if (!empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
-              <td><a class= "btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal">Editar</a></td>
+              <!--Te lleva al modal editar y con js se pasa el id real de la category al form action -->
+              <td><a id="btn-editar" class= "btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal" data-id="<?= $category->id ?>">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteCategories/<?= $category->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
               <?php endif; ?>            
@@ -109,9 +110,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <!--TOMA SIEMPRE EL ID DEL ULTIMO!!!!!-->
-                <form action="<?= BASE_URL ?>updateCategories/<?= $category->id?>" method="POST">
-                  <div class="mb-3">
+                <form action="<?= BASE_URL ?>updateCategories/" method="POST" id="edit-form">
+                <input type="hidden" name="category_id" id="category_id" value="">
+                <div class="mb-3">
                     <label for="pacienteNombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="pacienteNombre" name="nombrePaciente" required>
                   </div>
@@ -146,4 +147,5 @@
             </div>
           </div>
         </div>
+        <script src="./js/modalEditCategory.js"></script>
         <?php require_once './templates/layout/footer.phtml';

@@ -32,7 +32,8 @@
               <!--Si estas logueado, mostrar botones-->
               <?php if (!empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
-              <td><a href= "<?=BASE_URL ?>updateTurns/<?= $turn->id ?>" class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal">Editar</a></td>
+              <!--Te lleva al modal editar y con js se pasa el id real del turn al form action -->
+              <td><a id="btn-editar" class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editTurnoModal" data-id="<?= $turn->id ?>">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteTurns/<?= $turn->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
               <?php endif; ?>
@@ -106,9 +107,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                    <!--TOMA SIEMPRE EL ID DEL ULTIMO, YA QUE EL FORMULARIO ESTÁ EN UN MODAL. 
-                    UNA SOLUCIÓN SERIA CREAR EL FORMULARIO SIN MODAL EN UNA PÁGINA NUEVA.-->
-                <form action="<?= BASE_URL ?>updateTurns/<?= $turn->id ?>" method="POST">
+                <form action="<?= BASE_URL ?>updateTurns/" method="POST" id="edit-form">
+                <input type="hidden" name="category_id" id="category_id" value="">
                   <div class="mb-3">
                     <label for="editFechaTurno" class="form-label">Fecha</label>
                     <input type="date" name="fecha" class="form-control" id="editFechaTurno" required>
@@ -134,3 +134,4 @@
             </div>
           </div>
         </div>
+        <script src="./js/modalEditTurn.js"></script>
