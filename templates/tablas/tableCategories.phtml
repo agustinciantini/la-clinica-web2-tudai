@@ -40,7 +40,7 @@
               <!--Si estas logueado, mostrar botones-->
              <?php if (!empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
-              <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal">Editar</a></td>
+              <td><a href="<?= BASE_URL ?>updateCategories/<?= $category->id ?>" class= "btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal">Editar</a></td>
               <!--Boton "Eliminar"-->
               <td><a href="<?= BASE_URL ?>deleteCategories/<?= $category->id ?>" class="btn text-white btn-danger btn-sm">Eliminar</a></td>
               <?php endif; ?>            
