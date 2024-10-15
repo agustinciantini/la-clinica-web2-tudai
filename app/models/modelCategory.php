@@ -21,9 +21,9 @@ class modelCategory{
         return $category;
     }
     //Crea una categoria en la db.
-    public function createCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente){ 
-        $query= $this->db->prepare("INSERT INTO paciente (nombre, apellido, dni, edad, enfermedad, medico) VALUES (?,?,?,?,?,?)");
-        $result = $query->execute([$nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente]);
+    public function createCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente){ 
+        $query= $this->db->prepare("INSERT INTO paciente (nombre, apellido, dni, edad, enfermedad, medico, img) VALUES (?,?,?,?,?,?,?)");
+        $result = $query->execute([$nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente]);
         $nuevaQuery = $this->db->prepare("SELECT * FROM paciente ORDER BY id DESC LIMIT 1");
         $result= $nuevaQuery->execute();
     

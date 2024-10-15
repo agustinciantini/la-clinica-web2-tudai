@@ -73,10 +73,15 @@
                   <div class="mb-3">
                     <Label>Nombre del Paciente</Label>
                     <select name="id_paciente" for="medicoTurno" class="form-label">
-                      <!--select con nombres de los pacientes-->
+                      <!--select con nombres de los pacientes, si HAY categorias-->
+                    <?php if(!empty($categories)):?>
                     <?php foreach($categories as $category):?>
-                    <option value="<?= $category->id ?>"><?=$category->nombre?></option>
+                    <option value="<?= $category->id ?>"> <?= $category->nombre?></option> 
                     <?php endforeach; ?>
+                    <!--select con msj, si NO HAY categorias-->
+                    <?php else: ?>
+                      <option>No hay pacientes!</option>
+                      <?php endif; ?>
                     </select>
                     </div>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

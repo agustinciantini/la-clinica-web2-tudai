@@ -27,9 +27,10 @@ class controllerCategory{
         $edadPaciente = $_POST['edadPaciente'];
         $enfermedadPaciente = $_POST['enfermedadPaciente'];
         $medicoPaciente = $_POST['medicoPaciente'];
+        $imgPaciente =$_POST ['imgPaciente'];
 
-        $category = $this->model->createCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente);
-        $this->view->showHome();
+        $category = $this->model->createCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente);
+        header('Location:'. BASE_URL . 'turnos');
     }
     public function deleteCategories($id) { //Obtiene categoría a borar.
         $category = $this->model->getCategoryById($id);

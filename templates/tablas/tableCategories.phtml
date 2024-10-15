@@ -16,7 +16,7 @@
                 <td>
                   <!--Si el usuario esta logueado mostrar boton "Agregar"-->
                 <?php if (!empty($_SESSION['ID_USER'])): ?>
-                  <a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addTurnoModal">Agregar</a></td>
+                  <a class="btn text-white btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addPacienteModal">Agregar</a></td>
                 <?php endif; ?>
         </div>
         </th>
@@ -29,9 +29,15 @@
               <td><?= $category->apellido ?></td>
               <td><?= $category->dni ?></td>
               <td><?= $category->edad ?></td>
-              <td><?= $category->enfermedad ?></td>
+              <td><?= $category->enfermedad ?></td>   
               <td><a class="btn btn-link text-black" href="ver/<?= $category->id?> ">Ver más</a></td>
-             <!--Si estas logueado, mostrar botones-->
+              <!-- Si se subio una img mostrarla, sino msj-->
+              <?php if(!empty($category->img)): ?>
+              <td><img style="width: 60px; height: auto" src="<?= $category->img ?>"></td>
+              <?php else: ?>
+                <td>¡No subió imagen!</td>
+              <?php endif;?>  
+              <!--Si estas logueado, mostrar botones-->
              <?php if (!empty($_SESSION['ID_USER'])): ?>
               <!--Boton "Editar"-->
               <td><a class="btn text-white btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPacienteModal">Editar</a></td>
