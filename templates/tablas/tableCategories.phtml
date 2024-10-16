@@ -110,7 +110,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="<?= BASE_URL ?>updateCategories/" method="POST" id="edit-form">
+                <form action="<?= BASE_URL ?>updateCategories/" method="POST" id="edit-formulario">
                 <input type="hidden" name="category_id" id="category_id" value="">
                 <div class="mb-3">
                     <label for="pacienteNombre" class="form-label">Nombre</label>
@@ -147,5 +147,5 @@
             </div>
           </div>
         </div>
-        <script src="./js/modalEditCategory.js"></script>
+        <script src="./js/modal.js"></script>
         <?php require_once './templates/layout/footer.phtml';
