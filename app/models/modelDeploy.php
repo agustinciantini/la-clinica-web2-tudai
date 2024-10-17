@@ -1,19 +1,25 @@
 <?php 
 require_once './config.php';
 
-abstract class modelDeploy {
+class modelDeploy {
 
     protected $db;
 
     public function __construct(){
-        $this->db = $this->db = new PDO(
-            "mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
+        $this->db = $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
             $this->_deployUser();
             $this->_deployTurns();
             $this->_deployCategory(); 
     }
 
-    private function _deployUser() {
+    public function _deployUser() {
+
+        $sql =<<<SQL
+        CREATE DATABASE IF NOT EXISTS `clinica` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+        USE `clinica`;
+        SQL;
+
+        $this->db->query($sql);
         $query = $this->db->query("SHOW TABLES LIKE 'usuario'");
         $tables = $query->fetchAll();
 
@@ -37,7 +43,7 @@ abstract class modelDeploy {
         }
     }
 
-    private function _deployTurns() {
+    public function _deployTurns() {
         $query = $this->db->query("SHOW TABLES LIKE 'turno'");
         $tables = $query->fetchAll();
 
@@ -70,7 +76,7 @@ abstract class modelDeploy {
         }
     }
 
-    private function _deployCategory() {
+    public function _deployCategory() {
         $query = $this->db->query("SHOW TABLES LIKE 'paciente'");
         $tables = $query->fetchAll();
 

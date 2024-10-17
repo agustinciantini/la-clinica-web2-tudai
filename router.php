@@ -6,6 +6,7 @@ require_once "./app/controllers/controllerCategory.php";
 require_once './app/controllers/auth.controller.php';
 require_once './libs/response.php';
 require_once './app/middlewares/session.auth.middleware.php';
+require_once './app/models/modelDeploy.php';
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -18,6 +19,7 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'home';
+        $deploy = new modelDeploy();
         $controller = new controllerTurns();
         $controller->showHome();
         break;

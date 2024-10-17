@@ -15,12 +15,8 @@ class controllerCategory{
         $this->view->showCategories($categories);
     }
     public function createCategories(){  //Pasa datos para crear una categoría en la db.
-        if (!isset($_POST['nombrePaciente']) || empty($_POST['nombrePaciente'])) {
-            return $this->view->showError(error: "Ocurrio un error, ¡Vuelve a intentar!.");
-        }
-        if (!isset($_POST['apellidoPaciente']) || empty($_POST['apellidoPaciente'])) {
-            return $this->view->showError(error: "Ocurrio un error, ¡Vuelve a intentar!.");
-        }
+        //Autenticacion de los datos ingresados por el formulario.
+        if($this->authForm()){
         $nombrePaciente = $_POST['nombrePaciente'];
         $apellidoPaciente = $_POST['apellidoPaciente'];
         $dniPaciente = $_POST['dniPaciente'];
@@ -31,8 +27,11 @@ class controllerCategory{
 
         $category = $this->model->createCategories($nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente);
         header('Location:'. BASE_URL . 'turnos');
+    }else{
+        $this->view->showError(error: "Completar campos!");
     }
-    public function deleteCategories($id) { //Obtiene categoría a borar.
+    }
+    public function deleteCategories($id) { //Obtiene una categoría por ID a borrar.
         $category = $this->model->getCategoryById($id);
         
         if (!$category) {
@@ -41,12 +40,14 @@ class controllerCategory{
         $this->model->deleteCategories($id);
         header('Location:'. BASE_URL . 'home');
     }
-    public function updateCategories($id){  //Obtiene categoría a editar.
+    public function updateCategories($id){  //Obtiene categoría por ID a editar.
         $category = $this->model->getCategoryById($id);
         if (!$category) {
             return $this->view->showHome();
         }
 
+        //Autenticacion de los datos ingresados por el formulario.
+        if($this->authForm()){
         $nombrePaciente = $_POST['nombrePaciente'];
         $apellidoPaciente = $_POST['apellidoPaciente'];
         $dniPaciente = intval($_POST['dniPaciente']);
@@ -54,9 +55,23 @@ class controllerCategory{
         $enfermedadPaciente = $_POST['enfermedadPaciente'];
         $medicoPaciente = $_POST['medicoPaciente'];
         $imgPaciente = $_POST['imgPaciente'];
-
       
         $this->model->updateCategories($id, $nombrePaciente, $apellidoPaciente, $dniPaciente, $edadPaciente, $enfermedadPaciente, $medicoPaciente, $imgPaciente);
         header('Location:'. BASE_URL . 'turnos');
+    }else{
+        $this->view->showError(error: "Completar campos!");
+    }
+    }
+    public function authForm(){
+        //Si no esta seteado o esta vacio.
+        if (!isset($_POST['nombrePaciente']) || empty($_POST['nombrePaciente']) ||
+         !isset($_POST['apellidoPaciente']) || empty($_POST['apellidoPaciente'])||
+         !isset($_POST['dniPaciente']) || empty($_POST['dniPaciente']) ||
+         !isset($_POST['edadPaciente']) || empty($_POST['edadPaciente']) ||
+         !isset($_POST['enfermedadPaciente']) || empty($_POST['enfermedadPaciente']) ||
+         !isset($_POST['medicoPaciente']) || empty($_POST['medicoPaciente'])) {
+            return false;
+        }
+        return true;
     }
 }

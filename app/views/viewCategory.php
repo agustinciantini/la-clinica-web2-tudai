@@ -6,13 +6,13 @@ class viewCategory{
     public function showFAQ(){    // imprime las preguntas y respuestas.
         require_once './templates/faq.phtml'; 
     }
-    public function showCategories($categories){     //imprimir pacientes (categorias)
+    public function showCategories($categories){     //imprime pacientes (categorias)
         require_once './templates/tablas/tableCategories.phtml';
     }
-    public function showTurnsByIdCategory($turns){
-        require_once './templates/tablas/turnsByIdCategory.phtml';   
+    public function showTurnsByIdCategory($turns){  
+        require_once './templates/tablas/turnsByIdCategory.phtml'; //Imprime los items asociados a la categoria.
     }
-    public function showError($error) {
+    public function showError($error) {  //Imprime error.
         require 'templates/error.phtml';
     }
 }

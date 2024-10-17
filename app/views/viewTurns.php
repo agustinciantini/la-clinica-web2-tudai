@@ -13,7 +13,7 @@ class viewTurns{
     public function showTurnById($turn, $paciente) { // Imprime un turno según id.
         require_once './templates/tablas/turnById.phtml'; 
     }
-    public function showError($error) { // mensaje de error.
+    public function showError($error) { // Imprime  error.
         require 'templates/error.phtml';
     }
 }

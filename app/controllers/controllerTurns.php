@@ -23,13 +23,13 @@ class controllerTurns{
     public function showFaq(){  //Muestra faq.
         $this->view->showFaq();
     }
-    public function getTurns(){  //Obtiene ítems a mostrar.
+    public function getTurns(){  //Obtiene ítems a mostrar y las categorias para el select.
         $turns = $this->model->getTurns();
         $categories = $this->modelCategory->getCategories();
         $this->view->showTurns($turns, $categories);
     }
-    public function getTurnById($id) { //Obtiene un ítem según ID.
-        $turn = $this->model->getTurnById($id);        
+    public function getTurnById($id) { //Obtiene un ítem según ID y la categoria para
+        $turn = $this->model->getTurnById($id);//mostrar datos del paciente en detalles del turno.        
         if (!$turn) {
             return $this->view->showError("Ocurrió un error, ¡Vuelve a intentar!");
         }    
@@ -40,31 +40,23 @@ class controllerTurns{
     public function getTurnsByIdCategory($id){ //Obtiene ítems según ID de la categoría.
         $turns = $this->model->getTurnsByIdCategory($id);
         if(!$turns){
-            //$_SESSION==null
+            return $this->view->showError("Ocurrió un error, ¡Vuelve a intentar!");
         }
-        $this->viewCategory->showTurnsByIdCategory($turns);
+        $this->viewCategory->showTurnsByIdCategory($turns);//Turnos asociados a la categoria.
     }
     public function createTurns(){  //Pasa datos para crear un ítem en la db.
-        if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
-            return $this->view->showError("Ocurrio un error, ¡Vuelve a intentar!");
-
-        }
-        if (!isset($_POST['hora']) || empty($_POST['hora'])) {
-            return $this->view->showError("Ocurrio un error, ¡Vuelve a intentar!");
-        }
-
-        $fecha = $_POST['fecha'];
-        $hora = $_POST['hora'];
-        $consultorio = $_POST['consultorio'];
-        $medico = $_POST['medico'];
-        //Si no hay categorias(no tiene id_paciente) no puede hacer un turno.
-        if(!isset($_POST['id_paciente'])){
-            $this->view->showError("NO HAY CATEGORIAS");
-        }else{
+        //Autenticacion de los datos ingresados por el formulario.
+        if($this->authForm()){
+            $fecha = $_POST['fecha'];
+            $hora = $_POST['hora'];
+            $consultorio = $_POST['consultorio'];
+            $medico = $_POST['medico'];
             $id_paciente = $_POST['id_paciente'];
             $turn = $this->model->createTurns($fecha, $hora, $consultorio, $medico, $id_paciente);
-        header('Location:'. BASE_URL . 'turnos');
-    }
+            header('Location:'. BASE_URL . 'turnos');
+        }else{
+            $this->view->showError(error: "Completar campos!");
+        }
     }
     public function deleteTurns($id) {  //Obtiene un ítem según ID a borrar.
         $turn = $this->model->getTurnById($id);
@@ -78,27 +70,30 @@ class controllerTurns{
 
     public function updateTurns($id){  //Obtiene un ítem según ID a editar.
         $turn = $this->model->getTurnById($id);
-
         if (!$turn) {
             return $this->view->showError("Ocurrio un error, ¡Vuelve a intentar!");
         }
-        if (!isset($_POST['fecha']) || empty($_POST['fecha']) || 
-        !isset($_POST['hora']) || empty($_POST['hora']) || 
-        !isset($_POST['consultorio']) || empty($_POST['consultorio']) || 
-        !isset($_POST['medico']) || empty($_POST['medico'])) {
-            return $this->view->showError("Ocurrio un error, complete los campos necesarios.");
-        } 
-
-        $fecha = $_POST['fecha'];
-        $hora = $_POST['hora'];
-        $consultorio = intval($_POST['consultorio']);
-        $medico = $_POST['medico'];
-
-        $this->model->updateTurns($id, $fecha, $hora, $consultorio, $medico);
-        header('Location:'. BASE_URL . 'turnos');
-
-        if (!$turn) {
-            return $this->view->showHome();
+        //Autenticacion de los datos ingresados por el formulario.
+        if ($this->authForm()) {
+            $fecha = $_POST['fecha'];
+            $hora = $_POST['hora'];
+            $consultorio = intval($_POST['consultorio']);
+            $medico = $_POST['medico'];
+    
+            $this->model->updateTurns($id, $fecha, $hora, $consultorio, $medico);
+            header('Location:'. BASE_URL . 'turnos');    
+        } else{
+            $this->view->showError(error: "Completar campos!");
         }
     }
+    public function authForm(){
+     //Si no esta seteado o esta vacio.
+     if (!isset($_POST['fecha']) || empty($_POST['fecha']) ||
+     !isset($_POST['hora']) || empty($_POST['hora'])||
+     !isset($_POST['consultorio']) || empty($_POST['consultorio']) ||
+     !isset($_POST['medico']) || empty($_POST['medico']) ) {
+        return false;
+    }
+    return true;
+}
 }
