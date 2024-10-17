@@ -1,15 +1,30 @@
 <?php 
 require_once './config.php';
 
-class modelDeploy {
+abstract class modelDeploy {
 
-    protected $db;
+    public $db;
 
     public function __construct(){
-        $this->db = $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
+        $this->ConectionDb();
+        //Conexion a la base de datos.
+        $this->db = $this->db = new PDO(
+            "mysql:host=" . MYSQL_HOST . ";charset=utf8", 
+            MYSQL_USER, MYSQL_PASS);
+
             $this->_deployUser();
-            $this->_deployTurns();
             $this->_deployCategory(); 
+            $this->_deployTurns();
+    }
+    public function ConectionDb(){
+        $db = new PDO(
+            "mysql:host=" . MYSQL_HOST .";charset=utf8", 
+            MYSQL_USER, MYSQL_PASS);
+
+        $sql = "CREATE DATABASE IF NOT EXISTS `".MYSQL_DB."`
+                DEFAULT CHARACTER SET utf8mb4
+                COLLATE utf8mb4_general_ci";
+        $db->exec($sql);        
     }
 
     public function _deployUser() {
@@ -26,20 +41,19 @@ class modelDeploy {
         if (count($tables) == 0) {
 
             $sql =<<<SQL
-
             CREATE TABLE `usuario` (
-            `id` int(11) NOT NULL,
+            `id` int(11) NOT NULL AUTO_INCREMENT,
             `email` varchar(300) NOT NULL,
-            `password` char(60) NOT NULL
+            `password` char(60) NOT NULL,
               PRIMARY KEY (`id`),
-              UNIQUE KEY `email` (`email`),
+              UNIQUE KEY `email` (`email`)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
             SQL;
 
             $this->db->query($sql);
 
-            $insertSql = "INSERT INTO usuario (`id`, `email`, `password`) VALUES (?, ?, ?)"; // chequear acá
-            $this->db->prepare($insertSql)->execute(['webadmin', '$2y$10$mrjZzr7CGZI7ckIaF4qWaubeg7QutszR6vQ91ZYA58Ruo79kk1ply']);
+            $insertSql = "INSERT INTO usuario (email, password) VALUES ( ?, ?)"; // chequear acá
+            $this->db->prepare($insertSql)->execute([ 'webadmin', '$2y$10$mrjZzr7CGZI7ckIaF4qWaubeg7QutszR6vQ91ZYA58Ruo79kk1ply']);
         }
     }
 
@@ -58,7 +72,6 @@ class modelDeploy {
             `consultorio` int(11) NOT NULL,
             `medico` varchar(2000) NOT NULL,
             `id_paciente` int(11) NOT NULL,
-
               PRIMARY KEY (`id`),
               KEY `id_paciente` (`id_paciente`),
               CONSTRAINT `turno_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id`) ON DELETE CASCADE
@@ -91,8 +104,8 @@ class modelDeploy {
             `dni` int(11) NOT NULL,
             `edad` int(100) NOT NULL,
             `enfermedad` varchar(100) NOT NULL,
-            `medico` varchar(100) NOT NULL
-            `img` varchar(300) NOT NULL
+            `medico` varchar(100) NOT NULL,
+            `img` varchar(300) NOT NULL,
 
               PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

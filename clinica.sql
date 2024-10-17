@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2024 a las 03:52:25
+-- Tiempo de generación: 17-10-2024 a las 01:40:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `clinica`
 --
+CREATE DATABASE IF NOT EXISTS `clinica` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `clinica`;
 
 -- --------------------------------------------------------
 
@@ -27,23 +29,28 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `paciente`
 --
 
-CREATE TABLE `paciente` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `paciente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `dni` int(11) NOT NULL,
   `edad` int(100) NOT NULL,
   `enfermedad` varchar(100) NOT NULL,
   `medico` varchar(100) NOT NULL,
-  `img` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `img` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paciente`
 --
 
 INSERT INTO `paciente` (`id`, `nombre`, `apellido`, `dni`, `edad`, `enfermedad`, `medico`, `img`) VALUES
-(11, 'Jazmin', 'Barragan', 444, 555, 'Hepatitis', 'Fausto herrera', '');
+(19, 'Jazmin', 'Barragan', 11111, 111, 'Hepatitis', 'fffffff', ''),
+(22, '', 'Barragan', 1, 1, 'g', 'ffffffffff', ''),
+(23, '', 'Barragan', 3, 3, 'g', 'ddddd', ''),
+(24, '', 'j', 2, 1, 'd', 'd', ''),
+(25, 'Jazmin', 'Barragan', 1, 2, 'e', 'e', '');
 
 -- --------------------------------------------------------
 
@@ -51,14 +58,23 @@ INSERT INTO `paciente` (`id`, `nombre`, `apellido`, `dni`, `edad`, `enfermedad`,
 -- Estructura de tabla para la tabla `turno`
 --
 
-CREATE TABLE `turno` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `turno` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `hora` int(11) NOT NULL,
   `consultorio` int(11) NOT NULL,
   `medico` varchar(2000) NOT NULL,
-  `id_paciente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_paciente` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_paciente` (`id_paciente`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `turno`
+--
+
+INSERT INTO `turno` (`id`, `fecha`, `hora`, `consultorio`, `medico`, `id_paciente`) VALUES
+(13, '2024-10-18', 22, 22, 'ffffffffffffffff', 19);
 
 -- --------------------------------------------------------
 
@@ -66,11 +82,12 @@ CREATE TABLE `turno` (
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(300) NOT NULL,
-  `password` char(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `password` char(60) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -78,51 +95,6 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
 (1, 'webadmin', '$2y$10$mrjZzr7CGZI7ckIaF4qWaubeg7QutszR6vQ91ZYA58Ruo79kk1ply');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `paciente`
---
-ALTER TABLE `paciente`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `turno`
---
-ALTER TABLE `turno`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_paciente` (`id_paciente`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `paciente`
---
-ALTER TABLE `paciente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de la tabla `turno`
---
-ALTER TABLE `turno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

@@ -2,11 +2,11 @@
 require_once './app/models/modelDeploy.php';
 require_once './config.php';
 
-class modelTurns{
-    private $db;
+class modelTurns extends modelDeploy{
 
     public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=clinica;charset=utf8', 'root', '');
+        //$this->db = new PDO('mysql:host=localhost;dbname=clinica;charset=utf8', 'root', '');
+        parent::__construct();
     }
     public function getTurns(){  //Obtiene ítems de la db.
         $query = $this->db ->prepare('SELECT * FROM turno');

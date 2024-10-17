@@ -2,12 +2,12 @@
 require_once './app/models/modelDeploy.php';
 require_once './config.php';
 
-class modelCategory{
+class modelCategory extends modelDeploy{
 
-    private $db;
     public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=clinica;charset=utf8', 'root', '');
-    }
+    //$this->db = new PDO('mysql:host=localhost;dbname=clinica;charset=utf8', 'root', '');
+        parent::__construct();
+}
     public function getCategories(){ //Obtiene categorías de la db.
         $query=$this->db->prepare('SELECT * FROM paciente');
         $query->execute();
