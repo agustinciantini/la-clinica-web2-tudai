@@ -66,7 +66,7 @@ abstract class modelDeploy {
             $sql = <<<SQL
 
             CREATE TABLE `turno` (
-            `id` int(11) NOT NULL,
+            `id` int(11) NOT NULL AUTO_INCREMENT,
             `fecha` date NOT NULL,
             `hora` int(11) NOT NULL,
             `consultorio` int(11) NOT NULL,
@@ -80,10 +80,10 @@ abstract class modelDeploy {
             $this->db->query($sql);
     
             $insertSql = "INSERT INTO `turno` (`id`, `fecha`, `hora`, `consultorio`, `medico`, `id_paciente`) VALUES
-                        (1, '2024-09-27', 13, 3, 'Mariana Solis', 3),
-                        (2, '2024-09-28', 12, 2, 'Juan Carlos Gomez', 1),
-                        (3, '2024-09-30', 14, 1, 'Fausto Herrera', 4),
-                        (4, '2024-09-29', 11, 2, 'Mariana Solis', 2)";
+                        (4, '2024-09-27', 13, 3, 'Mariana Solis', 3),
+                        (1, '2024-09-28', 12, 2, 'Juan Carlos Gomez', 1),
+                        (2, '2024-09-30', 14, 1, 'Fausto Herrera', 4),
+                        (3, '2024-09-29', 11, 2, 'Mariana Solis', 2)";
                         
             $this->db->prepare($insertSql)->execute();
         }
@@ -98,7 +98,7 @@ abstract class modelDeploy {
             $sql = <<<SQL
 
             CREATE TABLE `paciente` (
-            `id` int(11) NOT NULL,
+            `id` int(11) NOT NULL AUTO_INCREMENT,
             `nombre` varchar(100) NOT NULL,
             `apellido` varchar(100) NOT NULL,
             `dni` int(11) NOT NULL,
